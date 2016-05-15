@@ -16,7 +16,7 @@ syntax enable
 "general
 set t_Co=256
 colorscheme Aplof/apolf
-
+set noundofile
 set mouse=a
 set mousehide
 
