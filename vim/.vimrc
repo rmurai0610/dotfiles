@@ -1,5 +1,6 @@
 set nocompatible
 filetype off
+"=================================================================
 "Vundle setup
 "=================================================================
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,6 +12,7 @@ Plugin 'rmurai0610/Apolf'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'tmux-plugins/vim-tmux'
 call vundle#end()
 filetype plugin indent on
 "=================================================================
