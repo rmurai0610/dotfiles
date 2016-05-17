@@ -13,6 +13,10 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tmux-plugins/vim-tmux'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 call vundle#end()
 filetype plugin indent on
 "=================================================================
@@ -21,7 +25,6 @@ filetype plugin indent on
 syntax enable                      " Enables syntax
 set t_Co=256                       " Allows use of 256 colors
 colorscheme apolf                  " Set up the colourscheme
-
 set list
 set listchars=trail:•              " Highlight the white spaces
 autocmd BufWritePre * :%s/\s\+$//e " Every time the file is written, delete all trailing white space
@@ -106,6 +109,11 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "You Complete Me setup
 "=================================================================
 autocmd CompleteDone * pclose
+"=================================================================
+"Snipmate setup
+"=================================================================
+imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
+smap <C-J> <Plug>snipMateNextOrTrigger
 "=================================================================
 "remap few keys
 "=================================================================

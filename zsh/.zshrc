@@ -82,6 +82,7 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vimconfig="vi ~/.vimrc"
+alias tmuxconfig="vi ~/.tmux.conf"
 alias v="vi "
 alias gst="git status "
 alias ga="git add "
