@@ -11,6 +11,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'rmurai0610/Apolf'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-vinegar'
+Plugin 'kien/ctrlp.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tmux-plugins/vim-tmux'
 Plugin 'SirVer/ultisnips'
@@ -105,12 +107,20 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "You Complete Me setup
 "=================================================================
 autocmd CompleteDone * pclose
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
 "=================================================================
 "UltiSnips setup
 "=================================================================
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+"=================================================================
+"ctrlp setup
+"=================================================================
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 "=================================================================
 "remap few keys
 "=================================================================
