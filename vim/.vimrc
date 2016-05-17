@@ -13,9 +13,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'tmux-plugins/vim-tmux'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 call vundle#end()
 filetype plugin indent on
@@ -28,7 +26,6 @@ colorscheme apolf                  " Set up the colourscheme
 set list
 set listchars=trail:•              " Highlight the white spaces
 autocmd BufWritePre * :%s/\s\+$//e " Every time the file is written, delete all trailing white space
-
 set backspace=indent,eol,start     " Backspace for dummies
 set linespace=0                    " No extra spaces between rows
 set number                         " Line numbers on
@@ -46,7 +43,6 @@ set softtabstop=4                  " Let backspace delete indent
 set nojoinspaces                   " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                     " Puts new vsplit windows to the right of the current
 set splitbelow                     " Puts new split windows to the bottom of the current
-
 set history=1000
 set noundofile
 set noswapfile
@@ -110,10 +106,11 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "=================================================================
 autocmd CompleteDone * pclose
 "=================================================================
-"Snipmate setup
+"UltiSnips setup
 "=================================================================
-imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "=================================================================
 "remap few keys
 "=================================================================
