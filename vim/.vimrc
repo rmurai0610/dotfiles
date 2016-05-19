@@ -22,6 +22,7 @@ filetype plugin indent on
 "=================================================================
 "some general setup
 "=================================================================
+let mapleader=","
 syntax enable                      " Enables syntax
 set t_Co=256                       " Allows use of 256 colors
 colorscheme apolf                  " Set up the colourscheme
@@ -106,9 +107,20 @@ let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "=================================================================
 "You Complete Me setup
 "=================================================================
-autocmd CompleteDone * pclose
+"autocmd CompleteDone * pclose
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+map <F9> :YcmCompleter FixIt<CR>
+nnoremap <Leader>g :YcmCompleter GoTo
+aug QFClose
+      au!
+      au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
+
 "=================================================================
 "UltiSnips setup
 "=================================================================
@@ -129,6 +141,5 @@ command Wq wq
 command W w
 command Q q
 map <Enter> o<ESC>
-map <S_Enter) O<ESC>
 imap jk <ESC>
 "=================================================================
