@@ -1,4 +1,4 @@
-"git test
+"git test 2
 set nocompatible
 filetype off
 "=================================================================
