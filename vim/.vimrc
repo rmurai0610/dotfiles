@@ -1,3 +1,4 @@
+"git test
 set nocompatible
 filetype off
 "=================================================================
@@ -39,10 +40,10 @@ set foldenable                     " Auto fold code
 set nowrap                         " Do not wrap long lines
 set autoindent                     " Indent at the same level of the previous line
 set smartindent                    " Indent like Java
-set shiftwidth=4                   " Use indents of 4 spaces
+set shiftwidth=2                   " Use indents of 2 spaces
 set expandtab                      " Tabs are spaces, not tabs
-set tabstop=4                      " An indentation every four columns
-set softtabstop=4                  " Let backspace delete indent
+set tabstop=2                      " An indentation every four columns
+set softtabstop=2                  " Let backspace delete indent
 set nojoinspaces                   " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                     " Puts new vsplit windows to the right of the current
 set splitbelow                     " Puts new split windows to the bottom of the current
@@ -113,7 +114,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 map <F9> :YcmCompleter FixIt<CR>
 nnoremap <Leader>g :YcmCompleter GoTo
 aug QFClose
