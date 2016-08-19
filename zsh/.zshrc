@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/Riku/.oh-my-zsh
-
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/gcc-arm-none-eabi-5_3-2016q1/bin"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -52,7 +52,6 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -79,11 +78,13 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias vim="/usr/local/Cellar/vim/7.4.1847_1/bin/vim"
+alias vi="vim"
+alias v="vi"
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vimconfig="vi ~/.vimrc"
 alias tmuxconfig="vi ~/.tmux.conf"
-alias v="vi "
 alias gst="git status "
 alias ga="git add "
 alias gc="git commit "
@@ -91,3 +92,6 @@ alias gp="git push "
 alias ja="javac *.java && java "
 alias organiseDownloadFiles="python3 ~/FileOrganiser/fileOrganiser.py"
 alias myDotfiles="~/dotfiles"
+alias armproject="~/Desktop/ARMProject/arm11_34/"
+alias desktop="~/Desktop"
+alias robocup="~/Desktop/Robocup\ 2016/src"
