@@ -1,11 +1,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/Riku/.oh-my-zsh
+export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/gcc-arm-none-eabi-5_3-2016q1/bin"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="kolo"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -55,7 +57,7 @@ plugins=(git)
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -90,8 +92,3 @@ alias ga="git add "
 alias gc="git commit "
 alias gp="git push "
 alias ja="javac *.java && java "
-alias organiseDownloadFiles="python3 ~/FileOrganiser/fileOrganiser.py"
-alias myDotfiles="~/dotfiles"
-alias armproject="~/Desktop/ARMProject/arm11_34/"
-alias desktop="~/Desktop"
-alias robocup="~/Desktop/Robocup\ 2016/src"

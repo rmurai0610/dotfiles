@@ -1,4 +1,5 @@
 # This file is NOT licensed under the GPLv3, which is the license for the rest
+
 # of YouCompleteMe.
 #
 # Here's the license text for this file:
@@ -38,7 +39,7 @@ flags = [
 '-Wall',
 '-Wextra',
 '-Werror',
-'-Wc++98-compat',
+#'-Wc++98-compat',
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -51,14 +52,14 @@ flags = [
 # headers will be compiled as C headers. You don't want that so ALWAYS specify
 # a "-std=<something>".
 # For a C project, you would set this to something like 'c99' instead of
-# 'c++11'.
-'-std=c99',
+ '-std=c++11',
+#'-std=c99',
 # ...and the same thing goes for the magic -x option which specifies the
 # language that the files to be compiled are written in. This is mostly
 # relevant for c++ headers.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
-'c',
+'c++',
 '-isystem',
 '../BoostParts',
 '-isystem',
