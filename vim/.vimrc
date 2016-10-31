@@ -20,7 +20,8 @@ Plugin 'tmux-plugins/vim-tmux'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'shirk/vim-gas'
-Plugin 'jplaut/vim-arduino-ino'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'prophittcorey/vim-flay'
 call vundle#end()
 filetype plugin indent on
 "=================================================================
@@ -62,6 +63,11 @@ set cursorline
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set showcmd
+"================================================================
+"How to do 90% of what plugin do
+"=================================================================
+set path+=**
+set wildmenu
 "=================================================================
 "syntastic setup
 "=================================================================
@@ -136,7 +142,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "=================================================================
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o
 "=================================================================
 "remap few keys
 "=================================================================
