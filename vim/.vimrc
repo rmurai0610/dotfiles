@@ -63,10 +63,11 @@ set cursorline
 set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set showcmd
+set lazyredraw
 "================================================================
 "How to do 90% of what plugin do
 "=================================================================
-set path+=**
+set path=$PWD/**
 set wildmenu
 "=================================================================
 "syntastic setup
@@ -128,8 +129,8 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 map <F9> :YcmCompleter FixIt<CR>
 nnoremap <Leader>g :YcmCompleter GoTo
 aug QFClose
-      au!
-      au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
 "=================================================================
 "UltiSnips setup
@@ -150,6 +151,8 @@ command WQ wq
 command Wq wq
 command W w
 command Q q
+
+map <c-S-f> mzgg=G`z
 
 map <Enter> o<ESC>
 imap jk <ESC>
