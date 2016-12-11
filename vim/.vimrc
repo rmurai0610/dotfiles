@@ -10,6 +10,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'rmurai0610/Apolf'
+Plugin 'https://gitlab.doc.ic.ac.uk/rm3115/wacc_syntax'
+Plugin 'rhysd/vim-clang-format'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/ListToggle'
 Plugin 'scrooloose/nerdtree'
@@ -22,6 +24,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'shirk/vim-gas'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'prophittcorey/vim-flay'
+Plugin 'craigemery/vim-autotag'
 call vundle#end()
 filetype plugin indent on
 "=================================================================
@@ -64,6 +67,7 @@ set ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set showcmd
 set lazyredraw
+set clipboard=unnamed
 "================================================================
 "How to do 90% of what plugin do
 "=================================================================
@@ -144,6 +148,26 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o
+nnoremap <leader>. :CtrlPTag<cr>
+"=================================================================
+"Clang format
+"=================================================================
+let g:clang_format#command = '/usr/local/Cellar/clang-format/2016-08-03/bin/clang-format'
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "AllowShortFunctionsOnASingleLine" : "false",
+            \ "AllowShortIfStatementsOnASingleLine" : "false",
+            \ "ColumnLimit" : 120,
+            \ "Standard" : "C++11"}
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+autocmd FileType c ClangFormatAutoEnable
 "=================================================================
 "remap few keys
 "=================================================================
@@ -162,4 +186,5 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-\> <C-W>v
+nnoremap ; :
 "=================================================================
