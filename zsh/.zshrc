@@ -1,8 +1,9 @@
 # Path to your oh-my-zsh installation.
+#
 export ZSH=/Users/Riku/.oh-my-zsh
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/gcc-arm-none-eabi-5_3-2016q1/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/i386elfgcc/bin:/$HOME/Documents/Imperial/yearTwo/Programming/labs/pintos-task0_rm3115/src/utils"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -57,7 +58,6 @@ plugins=(git)
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -74,6 +74,17 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# bind alt-l to clear screen
+bindkey "¬" clear-screen
+# Open mp3/img inside terminal
+file() {
+  if [[ $1 == /* ]]; then
+    echo zsh: command not found: file://${1// /%20}
+  else
+    echo zsh: command not found: file://$(pwd)/${1// /%20}
+  fi
+}
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -83,15 +94,20 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
-alias zshconfig="vi ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vimconfig="vi ~/.vimrc"
-alias tmuxconfig="vi ~/.tmux.conf"
-alias kwmconfig="vi ~/.kwm/kwmrc"
-alias khdconfig="vi ~/.khdrc"
+
+alias ohmyzsh="v ~/.oh-my-zsh"
+alias zshconfig="v ~/.zshrc"
+alias vimconfig="v ~/.vimrc"
+alias tmuxconfig="v ~/.tmux.conf"
+alias kwmconfig="v ~/.kwm/kwmrc"
+alias khdconfig="v ~/.khdrc"
+
 alias gst="git status"
 alias add="git add"
 alias commit="git commit"
 alias push="git push"
 alias pull="git pull"
 alias merge="git merge"
+alias checkout="git checkout"
+
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
