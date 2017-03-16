@@ -77,12 +77,12 @@ module.exports = {
     bell: false,
 
     // if true, selected text will automatically be copied to the clipboard
-    copyOnSelect: false
+    copyOnSelect: false,
 
-    // URL to custom bell
-    // bellSoundURL: 'http://example.com/bell.mp3',
+      // URL to custom bell
+      // bellSoundURL: 'http://example.com/bell.mp3',
 
-    // for advanced config flags please refer to https://hyper.is/#cfg
+      // for advanced config flags please refer to https://hyper.is/#cfg
   },
 
   // a list of plugins to fetch and install from npm
@@ -98,7 +98,7 @@ module.exports = {
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
   localPlugins: [
-                  'hyperminimal',
-                  'hyper-atom-dark-vibrancy'
-                ]
+    'hyperminimal',
+    'hyper-atom-dark-vibrancy'
+  ]
 };

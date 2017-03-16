@@ -1,6 +1,5 @@
 set nocompatible
 filetype off
-
 "=================================================================
 "VimPlug setup
 "=================================================================
@@ -11,20 +10,26 @@ Plug 'rmurai0610/Apolf'
 Plug 'rmurai0610/wacc_syntax'
 Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-vinegar'
 Plug 'kien/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
-Plug 'tmux-plugins/vim-tmux'
 Plug 'kchmck/vim-coffee-script'
 Plug 'craigemery/vim-autotag'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+Plug 'fishbullet/deoplete-ruby'
+Plug 'neomake/neomake'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/a.vim'
+Plug 'Shougo/denite.nvim'
+Plug 'Raimondi/delimitMate'
+Plug 'wakatime/vim-wakatime'
+Plug 'tpope/vim-fugitive'
+Plug 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
-
 filetype plugin indent on
 "=================================================================
 "some general setup
@@ -70,13 +75,15 @@ set clipboard=unnamed
 set fillchars=""                  " Remove ugly column of pipe
 set path=$PWD/**
 set wildmenu
+set nohlsearch
 " save undo info
 if !isdirectory($HOME."/.vim")
-    call mkdir($HOME."/.vim", "", 0770)
+  call mkdir($HOME."/.vim", "", 0770)
 endif
 if !isdirectory($HOME."/.vim/undo-dir")
-    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+  call mkdir($HOME."/.vim/undo-dir", "", 0700)
 endif
+autocmd filetype crontab setlocal nobackup nowritebackup
 set undodir=~/.vim/undo-dir
 set undofile
 "=================================================================
@@ -123,18 +130,17 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o
-nnoremap <leader>. :CtrlPTag<cr>
 "=================================================================
 "Clang format
 "=================================================================
 let g:clang_format#command = '/usr/local/Cellar/clang-format/2016-08-03/bin/clang-format'
 let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "AllowShortFunctionsOnASingleLine" : "false",
-            \ "AllowShortIfStatementsOnASingleLine" : "false",
-            \ "ColumnLimit" : 80,
-            \ "Standard" : "C++11"}
+      \ "AccessModifierOffset" : -4,
+      \ "AlwaysBreakTemplateDeclarations" : "true",
+      \ "AllowShortFunctionsOnASingleLine" : "false",
+      \ "AllowShortIfStatementsOnASingleLine" : "false",
+      \ "ColumnLimit" : 80,
+      \ "Standard" : "C++11"}
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
@@ -142,39 +148,31 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-autocmd FileType c ClangFormatAutoEnable
 "=================================================================
 " Deoplete
 "=================================================================
 let g:deoplete#enable_at_startup = 1
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-let g:deoplete#sources#clang#std#c = 'c11'
-let g:deoplete#sources#clang#std#cpp = 'c++14'
-
-let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
+let g:deoplete#sources#clang#libclang_path ='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header ='/Library/Developer/CommandLineTools/usr/lib/clang'
 autocmd CompleteDone * pclose!
 "=================================================================
 " NeoMake
 "=================================================================
-" autocmd! BufWritePost * Neomake
-let g:neomake_javascript_jscs_maker = {
-    \ 'exe': 'jscs',
-    \ 'args': ['--no-color', '--preset', 'airbnb', '--reporter', 'inline', '--esnext'],
-    \ 'errorformat': '%f: line %l\, col %c\, %m',
-    \ }
-let g:neomake_cpp_enable_markers=['clang']
-let g:neomake_c_enable_markers=['clang']
-let g:neomake_h_enabled_makers = ['clang']
-if strpart(expand("%:p:h"), 0, 62) == "/Users/Riku/Documents/Imperial/yearTwo/Programming/labs/pintos"
-  let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-nostdlib", "-static", "-Wl", "-g"]
+if (expand('%:e')=='c' || expand('%:e')=='cpp')
+  let g:neomake_cpp_enabled_makers=['clang']
+  let g:neomake_cpp_clang_args=["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
+  let g:neomake_open_list=2
+  autocmd! BufWritePost * Neomake!
 else
-  let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
+  autocmd! BufWritePost * Neomake
 endif
-let g:neomake_javascript_enabled_makers = ['jscs']
-" let g:neomake_open_list = 2
-" let g:neomake_autolint_sign_column_always=1
+" autoclose quickfix window
+aug QFClose
+  au!
+  au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+aug END
 "=================================================================
 " ultisnips
 "=================================================================
@@ -185,7 +183,19 @@ let g:UltiSnipsEditSplit="vertical"
 "=================================================================
 " autotag
 "=================================================================
-let g:autotagTagsFile=".tags"
+let g:autotagTagsFile="tags"
+"=================================================================
+" Denite
+"=================================================================
+nnoremap <Leader>g  :<C-u>Denite -auto_preview grep<CR>
+nnoremap <Leader>cg :<C-u>DeniteCursorWord grep<CR>
+nnoremap <Leader>f  :<C-u>Denite file_rec<CR>
+"=================================================================
+" Tagbar
+"=================================================================
+nmap <F8> :TagbarToggle<CR>
+" move the quickfix underneath all the time
+autocmd FileType qf wincmd J
 "=================================================================
 "remap few keys
 "=================================================================
@@ -194,15 +204,15 @@ command Wq wq
 command W w
 command Q q
 
-map <c-S-f> mzgg=G`z
-map <Enter> o<ESC>
-imap jk <ESC>
+nnoremap <c-S-f> mzgg=G`z
+nnoremap <Enter> o<ESC>
+inoremap jk <ESC>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-\> <C-W>v
 nnoremap ; :
-tmap jk <ESC>
+tnoremap jk <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 "=================================================================

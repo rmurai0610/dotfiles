@@ -3,7 +3,11 @@
 export ZSH=/Users/Riku/.oh-my-zsh
 export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/i386elfgcc/bin:/$HOME/Documents/Imperial/yearTwo/Programming/labs/pintos-task0_rm3115/src/utils"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/i387elfgcc/bin:/$HOME/Documents/Imperial/yearTwo/Programming/labs/pintos-task0_rm3115/src/utils"
+export PATH=${PATH}:/usr/local/sicstus4.3.5/bin
+export PATH=${PATH}:/Users/Riku/com2/bin
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -74,8 +78,6 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# bind alt-l to clear screen
-bindkey "¬" clear-screen
 # Open mp3/img inside terminal
 file() {
   if [[ $1 == /* ]]; then
@@ -85,6 +87,7 @@ file() {
   fi
 }
 
+setopt IGNORE_EOF
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -109,5 +112,10 @@ alias push="git push"
 alias pull="git pull"
 alias merge="git merge"
 alias checkout="git checkout"
+alias diff="git diff"
+alias clone="git clone"
+alias sicstus="rlwrap sicstus"
 
+alias imperial='~/Documents/Imperial/yearTwo'
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export EDITOR=/usr/local/bin/nvim
