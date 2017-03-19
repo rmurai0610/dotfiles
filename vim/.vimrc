@@ -12,7 +12,6 @@ Plug 'rhysd/vim-clang-format'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-vinegar'
-Plug 'kien/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'kchmck/vim-coffee-script'
 Plug 'craigemery/vim-autotag'
@@ -34,7 +33,7 @@ filetype plugin indent on
 "=================================================================
 "some general setup
 "=================================================================
-let mapleader=","
+let mapleader = "\<Space>"
 syntax enable                      " Enables syntax
 set t_Co=256                       " Allows use of 256 colors
 colorscheme apolf                  " Set up the colourscheme
@@ -100,36 +99,19 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "=================================================================
 "EasyMotion setup
 "=================================================================
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+let g:EasyMotion_do_mapping = 0
+map <Leader>s <Plug>(easymotion-tn)
 " Search n character
 map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+" omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
-
-let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
 "=================================================================
 "UltiSnips setup
 "=================================================================
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-"=================================================================
-"ctrlp setup
-"=================================================================
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o
 "=================================================================
 "Clang format
 "=================================================================
@@ -146,8 +128,6 @@ autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " if you install vim-operator-user
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-" Toggle auto formatting:
-nmap <Leader>C :ClangFormatAutoToggle<CR>
 "=================================================================
 " Deoplete
 "=================================================================
@@ -168,11 +148,15 @@ if (expand('%:e')=='c' || expand('%:e')=='cpp')
 else
   autocmd! BufWritePost * Neomake
 endif
+
 " autoclose quickfix window
 aug QFClose
   au!
   au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
+
+" move the quickfix underneath all the time
+autocmd FileType qf wincmd J
 "=================================================================
 " ultisnips
 "=================================================================
@@ -194,8 +178,6 @@ nnoremap <Leader>f  :<C-u>Denite file_rec<CR>
 " Tagbar
 "=================================================================
 nmap <F8> :TagbarToggle<CR>
-" move the quickfix underneath all the time
-autocmd FileType qf wincmd J
 "=================================================================
 "remap few keys
 "=================================================================
@@ -213,6 +195,25 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-\> <C-W>v
 nnoremap ; :
+nnoremap <Leader>w :w<CR>
 tnoremap jk <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 "=================================================================
+" quick terminal
+"=================================================================
+let s:is_quick_terminal_open = 0
+function QuickTerminal()
+  if (s:is_quick_terminal_open)
+    bd! quick_terminal
+    let s:is_quick_terminal_open = 0
+  else
+    botright 10 new
+    terminal
+    call feedkeys("\<C-\>\<C-n>")
+    f quick_terminal
+    call feedkeys("i")
+    let s:is_quick_terminal_open = 1
+  end
+endfunction
+
+nnoremap <Leader><Leader> :call QuickTerminal()<CR>
