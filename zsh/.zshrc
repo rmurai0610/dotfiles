@@ -1,11 +1,10 @@
 # Path to your oh-my-zsh installation.
 #
 export ZSH=/Users/Riku/.oh-my-zsh
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:${PATH}
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/i387elfgcc/bin:/$HOME/Documents/Imperial/yearTwo/Programming/labs/pintos-task0_rm3115/src/utils"
-export PATH=${PATH}:/usr/local/sicstus4.3.5/bin
-export PATH=${PATH}:/Users/Riku/com2/bin
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/i387elfgcc/bin:/"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/sicstus4.3.5/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
 # Set name of the theme to load.
@@ -114,8 +113,13 @@ alias merge="git merge"
 alias checkout="git checkout"
 alias diff="git diff"
 alias clone="git clone"
+alias stash="git stash"
+alias reset="git reset"
+alias rebase="git rebase"
+alias branch="git branch"
+alias lg="git lg"
 alias sicstus="rlwrap sicstus"
 
 alias imperial='~/Documents/Imperial/yearTwo'
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 export EDITOR=/usr/local/bin/nvim

@@ -5,7 +5,9 @@ filetype off
 "=================================================================
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.vim/plugged')
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'enricobacis/vim-airline-clock'
 Plug 'rmurai0610/Apolf'
 Plug 'rmurai0610/wacc_syntax'
 Plug 'rhysd/vim-clang-format'
@@ -21,6 +23,9 @@ Plug 'fishbullet/deoplete-ruby'
 Plug 'neomake/neomake'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'vim-scripts/a.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Raimondi/delimitMate'
@@ -28,6 +33,11 @@ Plug 'wakatime/vim-wakatime'
 Plug 'tpope/vim-fugitive'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
+Plug 'mattn/emmet-vim'
+Plug 'bonsaiben/bootstrap-snippets'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'scrooloose/nerdcommenter'
+Plug 'terryma/vim-expand-region'
 call plug#end()
 filetype plugin indent on
 "=================================================================
@@ -50,10 +60,10 @@ set foldenable                     " Auto fold code
 set nowrap                         " Do not wrap long lines
 set autoindent                     " Indent at the same level of the previous line
 set smartindent                    " Indent like Java
-set shiftwidth=2                   " Use indents of 2 spaces
+set shiftwidth=4                   " Use indents of 2 spaces
 set expandtab                      " Tabs are spaces, not tabs
-set tabstop=2                      " An indentation every four columns
-set softtabstop=2                  " Let backspace delete indent
+set tabstop=4                      " An indentation every four columns
+set softtabstop=4                  " Let backspace delete indent
 set nojoinspaces                   " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                     " Puts new vsplit windows to the right of the current
 set splitbelow                     " Puts new split windows to the bottom of the current
@@ -66,8 +76,6 @@ autocmd GUIEnter * set visualbell t_vb=
 set mouse=a                        " Allows mouse to be used
 set mousehide                      " Hide it when not in use
 set cursorline
-set ruler
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
 set showcmd
 set lazyredraw
 set clipboard=unnamed
@@ -86,9 +94,11 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 set undodir=~/.vim/undo-dir
 set undofile
 "=================================================================
-"lightline setup
+"airline setup
 "=================================================================
 set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline_theme='base16'
 "=================================================================
 "NerdTree setup
 "=================================================================
@@ -103,7 +113,6 @@ let g:EasyMotion_do_mapping = 0
 map <Leader>s <Plug>(easymotion-tn)
 " Search n character
 map  / <Plug>(easymotion-sn)
-" omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 "=================================================================
@@ -124,7 +133,6 @@ let g:clang_format#style_options = {
       \ "ColumnLimit" : 80,
       \ "Standard" : "C++11"}
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " if you install vim-operator-user
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
@@ -132,11 +140,28 @@ autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Deoplete
 "=================================================================
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [
+  \ 'tern#Complete',
+  \ 'jspc#omni'
+\]
+set completeopt=longest,menuone,preview
+let g:deoplete#sources = {}
+let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
+let g:SuperTabClosePreviewOnPopupClose = 1
+
 " deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 let g:deoplete#sources#clang#libclang_path ='/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header ='/Library/Developer/CommandLineTools/usr/lib/clang'
 autocmd CompleteDone * pclose!
+let g:neosnippet#enable_completed_snippet = 1
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 "=================================================================
 " NeoMake
 "=================================================================
@@ -148,6 +173,12 @@ if (expand('%:e')=='c' || expand('%:e')=='cpp')
 else
   autocmd! BufWritePost * Neomake
 endif
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+nnoremap <Leader>e :ll<CR>
+nnoremap <Leader>n :lnext<CR>
+nnoremap <Leader>p :lprev<CR>
+
 
 " autoclose quickfix window
 aug QFClose
@@ -173,31 +204,39 @@ let g:autotagTagsFile="tags"
 "=================================================================
 nnoremap <Leader>g  :<C-u>Denite -auto_preview grep<CR>
 nnoremap <Leader>cg :<C-u>DeniteCursorWord grep<CR>
-nnoremap <Leader>f  :<C-u>Denite file_rec<CR>
+nnoremap <Leader>f  :<C-u>DeniteProjectDir file_rec<CR>
+
+call denite#custom#var('file_rec', 'command',
+    \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+call denite#custom#map(
+      \ 'insert',
+      \ '<Down>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<Up>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-j>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-k>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
 "=================================================================
 " Tagbar
 "=================================================================
 nmap <F8> :TagbarToggle<CR>
-"=================================================================
-"remap few keys
-"=================================================================
-command WQ wq
-command Wq wq
-command W w
-command Q q
-
-nnoremap <c-S-f> mzgg=G`z
-nnoremap <Enter> o<ESC>
-inoremap jk <ESC>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-\> <C-W>v
-nnoremap ; :
-nnoremap <Leader>w :w<CR>
-tnoremap jk <C-\><C-n>
-tnoremap <Esc> <C-\><C-n>
 "=================================================================
 " quick terminal
 "=================================================================
@@ -217,3 +256,32 @@ function QuickTerminal()
 endfunction
 
 nnoremap <Leader><Leader> :call QuickTerminal()<CR>
+"=================================================================
+" Emmet setting
+"=================================================================
+let g:user_emmet_expandabbr_key='<Tab>'
+autocmd FileType html,css,scss,sass EmmetInstall
+"=================================================================
+" vim-expand-region setting
+"=================================================================
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+"=================================================================
+" remap few keys
+"=================================================================
+command WQ wq
+command Wq wq
+command W w
+command Q q
+nnoremap <c-S-f> mzgg=G`z
+nnoremap <Enter> o<ESC>
+inoremap jk <ESC>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-\> <C-W>v
+nnoremap ; :
+nnoremap <Leader>w :w<CR>
+tnoremap jk <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
