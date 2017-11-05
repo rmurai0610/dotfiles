@@ -1,4 +1,5 @@
 set nocompatible
+
 filetype off
 "=================================================================
 "VimPlug setup
@@ -18,7 +19,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'kchmck/vim-coffee-script'
 Plug 'craigemery/vim-autotag'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang'
+"Plug 'zchee/deoplete-clang'
+Plug 'Tweekmonster/deoplete-clang2'
 Plug 'fishbullet/deoplete-ruby'
 Plug 'neomake/neomake'
 Plug 'SirVer/ultisnips'
@@ -26,6 +28,8 @@ Plug 'honza/vim-snippets'
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'davidhalter/jedi'
+Plug 'zchee/deoplete-jedi'
 Plug 'vim-scripts/a.vim'
 Plug 'Shougo/denite.nvim'
 Plug 'Raimondi/delimitMate'
@@ -38,6 +42,9 @@ Plug 'bonsaiben/bootstrap-snippets'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-expand-region'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'tell-k/vim-autopep8'
 call plug#end()
 filetype plugin indent on
 "=================================================================
@@ -124,18 +131,18 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "=================================================================
 "Clang format
 "=================================================================
-let g:clang_format#command = '/usr/local/Cellar/clang-format/2016-08-03/bin/clang-format'
+let g:clang_format#command = '/usr/local/bin/clang-format'
 let g:clang_format#style_options = {
       \ "AccessModifierOffset" : -4,
       \ "AlwaysBreakTemplateDeclarations" : "true",
       \ "AllowShortFunctionsOnASingleLine" : "false",
       \ "AllowShortIfStatementsOnASingleLine" : "false",
-      \ "ColumnLimit" : 80,
+      \ "ColumnLimit" : 120,
       \ "Standard" : "C++11"}
+let g:clang_format#detect_style_file = 1
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" if you install vim-operator-user
-autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc ClangFormatAutoEnable
 "=================================================================
 " Deoplete
 "=================================================================
@@ -175,6 +182,10 @@ else
 endif
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+
+let g:neomake_python_enabled_makers=['pep8']
+let g:neomake_python_pep8_args=['--max-line-length=120']
+
 nnoremap <Leader>e :ll<CR>
 nnoremap <Leader>n :lnext<CR>
 nnoremap <Leader>p :lprev<CR>
@@ -267,6 +278,35 @@ autocmd FileType html,css,scss,sass EmmetInstall
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 "=================================================================
+" auto pep8
+"=================================================================
+"function! Preserve(command)
+    "" Save the last search.
+    "let search = @/
+    "" Save the current cursor position.
+    "let cursor_position = getpos('.')
+    "" Save the current window position.
+    "normal! H
+    "let window_position = getpos('.')
+    "call setpos('.', cursor_position)
+    "" Execute the command.
+    "execute a:command
+    "" Restore the last search.
+    "let @/ = search
+    "" Restore the previous window position.
+    "call setpos('.', window_position)
+    "normal! zt
+    "" Restore the previous cursor position.
+    "call setpos('.', cursor_position)
+"endfunction
+
+"function! Autopep8()
+    "call Preserve(':silent %!autopep8 --max-line-length=120 -')
+"endfunction
+
+"autocmd FileType python nnoremap <S-f> :call Autopep8()<CR>
+"autocmd BufWrite *.{py} :call Autopep8()
+"=================================================================
 " remap few keys
 "=================================================================
 command WQ wq
@@ -283,5 +323,7 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap <C-\> <C-W>v
 nnoremap ; :
 nnoremap <Leader>w :w<CR>
+
 tnoremap jk <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
+

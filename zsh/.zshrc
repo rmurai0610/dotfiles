@@ -1,12 +1,13 @@
 # Path to your oh-my-zsh installation.
 #
+#
 export ZSH=/Users/Riku/.oh-my-zsh
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/i387elfgcc/bin:/"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/sicstus4.3.5/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
+#export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -99,6 +100,7 @@ alias v="nvim"
 
 alias ohmyzsh="v ~/.oh-my-zsh"
 alias zshconfig="v ~/.zshrc"
+alias zshreload="source ~/.zshrc"
 alias vimconfig="v ~/.vimrc"
 alias tmuxconfig="v ~/.tmux.conf"
 alias kwmconfig="v ~/.kwm/kwmrc"
@@ -111,6 +113,7 @@ alias push="git push"
 alias pull="git pull"
 alias merge="git merge"
 alias checkout="git checkout"
+alias check="git checkout"
 alias diff="git diff"
 alias clone="git clone"
 alias stash="git stash"
@@ -119,7 +122,23 @@ alias rebase="git rebase"
 alias branch="git branch"
 alias lg="git lg"
 alias sicstus="rlwrap sicstus"
+alias google-chrome="open -a Google\ Chrome"
 
-alias imperial='~/Documents/Imperial/yearTwo'
+alias imperial="~/Documents/Imperial/yearThree"
+alias git-magic="~/Documents/Imperial/yearThree/group/DynamicFusion/git_commit_helper"
 
 export EDITOR=/usr/local/bin/nvim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='
+  (git ls-tree -r --name-only HEAD ||
+   find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+      sed s/^..//) 2> /dev/null'
+
