@@ -1,0 +1,42 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+[[plugins]]
+repo = 'haya14busa/dein-command.vim'
+depends = ['dein.vim']
+[[plugins]]
+repo = 'rmurai0610/Apolf'
+hook_add = '''
+  set background=dark
+  au MyAutoCmd VimEnter * nested colorscheme apolf
+'''
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = 'source ~/.vim/userautoload/plugins/lightline.rc.vim'
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = 'source ~/.vim/userautoload/plugins/nerdtree.rc.vim'
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+depends = ['nerdtree']
+[[plugins]]
+repo = 'tpope/vim-vinegar'
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = 'source ~/.vim/userautoload/plugins/easymotion.rc.vim'
+[[plugins]]
+repo = 'Raimondi/delimitMate'
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = 'source ~/.vim/userautoload/plugins/ale.rc.vim'
+[[plugins]]
+repo = 'maximbaz/lightline-ale'
+depends = ['lightline', 'ale']
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+build = 'bash install.sh'
+hook_add = 'source ~/.vim/userautoload/plugins/language-client.rc.vim'
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = 'source ~/.vim/userautoload/plugins/denite.rc.vim'

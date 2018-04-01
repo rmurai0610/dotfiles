@@ -1,0 +1,13 @@
+[[plugins]]
+repo = 'craigemery/vim-autotag'
+hook_source = '''
+  let g:autotagTagsFile="tags"
+'''
+on_ft = ['c', 'cpp']
+
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+hook_source = '''
+  call deoplete#enable()
+  source ~/.vim/userautoload/plugins/deoplete.rc.vim
+'''
