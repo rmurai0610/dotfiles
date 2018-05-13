@@ -7,6 +7,7 @@ let g:lightline#ale#indicator_errors = "\uf05e"
 let g:lightline#ale#indicator_ok = "\uf00c"
 
 let g:lightline = {
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [['mode', 'paste' ],
       \            ['gitbranch', 'readonly', 'filename', 'modified']],
@@ -26,5 +27,5 @@ let g:lightline = {
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
       \     'linter_ok': 'left',
-      \ }
+      \ },
       \ }

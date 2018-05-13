@@ -5,8 +5,10 @@ export ZSH=/Users/Riku/.oh-my-zsh
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/sicstus4.3.5/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/llvm/bin/:$PATH"
+export PATH="/usr/local/Cellar/pcl/1.8.1/bin:$PATH"
+export PATH="/Users/Riku/.vim/script:$PATH"
 #export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -88,15 +90,24 @@ file() {
 }
 
 setopt IGNORE_EOF
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  export VISUAL="nvr"
+else
+  export VISUAL="nvim"
+fi
+alias v="$VISUAL"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias vim="nvim"
-alias vi="nvim"
-alias v="nvim"
+alias v="$VISUAL"
+alias vi="$VISUAL"
+alias vim="$VISUAL"
+alias nvim="$VISUAL"
 
 alias ohmyzsh="v ~/.oh-my-zsh"
 alias zshconfig="v ~/.zshrc"
@@ -114,7 +125,7 @@ alias pull="git pull"
 alias merge="git merge"
 alias checkout="git checkout"
 alias check="git checkout"
-alias diff="git diff"
+alias gdiff="git diff"
 alias clone="git clone"
 alias stash="git stash"
 alias reset="git reset"

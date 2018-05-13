@@ -4,10 +4,12 @@ repo = 'Shougo/dein.vim'
 repo = 'haya14busa/dein-command.vim'
 depends = ['dein.vim']
 [[plugins]]
-repo = 'rmurai0610/Apolf'
+repo = 'arcticicestudio/nord-vim'
 hook_add = '''
-  set background=dark
-  au MyAutoCmd VimEnter * nested colorscheme apolf
+  let g:nord_italic = 1
+  let g:nord_italic_comments = 1
+  let g:nord_comment_brightness = 15
+  au MyAutoCmd VimEnter * nested colorscheme nord
 '''
 [[plugins]]
 repo = 'itchyny/lightline.vim'
@@ -20,6 +22,8 @@ repo = 'Xuyuanp/nerdtree-git-plugin'
 depends = ['nerdtree']
 [[plugins]]
 repo = 'tpope/vim-vinegar'
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 hook_add = 'source ~/.vim/userautoload/plugins/easymotion.rc.vim'
@@ -46,3 +50,7 @@ repo = 'neoclide/vim-easygit'
 hook_add = '''
   let g:easygit_enable_command = 1
 '''
+[[plugins]]
+repo = 'simeji/winresizer'
+[[plugins]]
+repo = 'sheerun/vim-polyglot'

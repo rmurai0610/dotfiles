@@ -17,11 +17,11 @@ on_event = 'InsertCharPre'
 hook_source = 'source ~/.vim/userautoload/plugins/neosnippet.rc.vim'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
-on_i = 1
+on_event = 'InsertCharPre'
 [[plugins]]
 repo = 'mattn/emmet-vim'
 hook_source = '''
   let g:user_emmet_expandabbr_key='<Tab>'
   autocmd FileType html,css,scss,sass EmmetInstall
 '''
-on_ft = ['html', 'css', 'scss', 'sass']
+on_ft = ['html', 'vue', 'css', 'scss', 'sass']

@@ -32,3 +32,11 @@ let g:ale_fixers = {
 " Python setting
 let g:ale_python_flake8_options = '--max-line-length 119'
 let g:ale_python_autopep8_options = '--max-line-length 119'
+
+" C setting
+let g:ale_c_clang_options = '-std=c11 -Wall'
+let g:ale_c_clangformat_options = '-style="{BasedOnStyle: google, IndentWidth: 4, AccessModifierOffset: -4, ColumnLimit: 119}"'
+
+" C++ setting
+let g:ale_cpp_clang_options = '-std=c++11 -Wall'
+let g:ale_cpp_clangformat_options = '-style="{BasedOnStyle: google, IndentWidth: 4, AccessModifierOffset: -4, ColumnLimit: 119}"'
