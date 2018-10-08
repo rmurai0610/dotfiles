@@ -43,6 +43,8 @@ hook_add = 'source ~/.vim/userautoload/plugins/language-client.rc.vim'
 repo = 'Shougo/denite.nvim'
 hook_add = 'source ~/.vim/userautoload/plugins/denite.rc.vim'
 [[plugins]]
+repo = 'Shougo/context_filetype.vim'
+[[plugins]]
 repo = 'neoclide/denite-git'
 depends = ['neoclide/vim-easygit']
 [[plugins]]

@@ -17,8 +17,10 @@ set scrolloff=3
 set wildmenu
 set splitright
 set splitbelow
-set cursorline
 set termguicolors
+set lazyredraw
+
+set encoding=utf-8
 
 " Whitespace
 set list
@@ -38,6 +40,9 @@ autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype c setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
+
+" tags
+set tags=.tags;~
 
 " Save undo info
 let s:undo_dir = expand('~/.vim/undo')

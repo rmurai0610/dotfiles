@@ -2,13 +2,14 @@
 #
 #
 export ZSH=/Users/Riku/.oh-my-zsh
-export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+#export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
+#export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+#export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+#export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/llvm/bin/:$PATH"
-export PATH="/usr/local/Cellar/pcl/1.8.1/bin:$PATH"
+#export PATH="/usr/local/Cellar/pcl/1.8.1/bin:$PATH"
 export PATH="/Users/Riku/.vim/script:$PATH"
+export PATH="/usr/local/i386elfgcc/bin:$PATH"
 #export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -92,11 +93,10 @@ file() {
 setopt IGNORE_EOF
 
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-  export VISUAL="nvr"
+  export NVIM="nvr"
 else
-  export VISUAL="nvim"
+  export NVIM="nvim"
 fi
-alias v="$VISUAL"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -104,10 +104,15 @@ alias v="$VISUAL"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias v="$VISUAL"
-alias vi="$VISUAL"
-alias vim="$VISUAL"
-alias nvim="$VISUAL"
+# alias v="$VISUAL"
+# alias vi="$VISUAL"
+# alias vim="$"
+# alias nvim="$VISUAL"
+alias v="$NVIM"
+alias vi="$NVIM"
+alias vim="$NVIM"
+alias nvim="$NVIM"
+
 
 alias ohmyzsh="v ~/.oh-my-zsh"
 alias zshconfig="v ~/.zshrc"
@@ -135,8 +140,10 @@ alias lg="git lg"
 alias sicstus="rlwrap sicstus"
 alias google-chrome="open -a Google\ Chrome"
 
-alias imperial="~/Documents/Imperial/yearThree"
-alias git-magic="~/Documents/Imperial/yearThree/group/DynamicFusion/git_commit_helper"
+alias imperial="~/Documents/Imperial/year4"
+
+alias rsync_tickepon="rsync -avr -delete -P -e  'ssh -i ~/.ssh/gorally_intern.pem' /Users/Riku/influ/tickepon/* giapp07:/home/ec2-user/tickepon"
+alias watch_tickepon="rsync_tickepon; fswatch -or /Users/Riku/influ/tickepon/ | while read f; do rsync_tickepon; done"
 
 export EDITOR=/usr/local/bin/nvim
 

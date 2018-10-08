@@ -1,7 +1,10 @@
 set hidden
 let g:LanguageClient_serverCommands = {
     \ 'cpp': ['clangd'],
-    \ 'python': ['pyls']
+    \ 'python': ['pyls'],
+    \ 'html': ['html-languageserver', '--stdio'],
+    \ 'css': ['css-languageserver', '--stdio'],
+    \ 'vue': ['vls'],
     \ }
 let g:LanguageClient_autoStart = 1
 " Let Ale perform the linting
