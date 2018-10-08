@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
 #
 #
+#
 export ZSH=/Users/Riku/.oh-my-zsh
 #export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
 #export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
@@ -11,6 +12,7 @@ export PATH="/usr/local/opt/llvm/bin/:$PATH"
 export PATH="/Users/Riku/.vim/script:$PATH"
 export PATH="/usr/local/i386elfgcc/bin:$PATH"
 #export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
+#export ZSH=/home/riku/.oh-my-zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
