@@ -100,8 +100,6 @@ alias zshconfig="v ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias vimconfig="v ~/.vimrc"
 alias tmuxconfig="v ~/.tmux.conf"
-alias kwmconfig="v ~/.kwm/kwmrc"
-alias khdconfig="v ~/.khdrc"
 
 alias gst="git status"
 alias add="git add"
@@ -119,4 +117,14 @@ alias rebase="git rebase"
 alias branch="git branch"
 alias lg="git lg"
 
-alias imperial="~/Documents/Imperial/year4"
+
+case `uname` in
+  Darwin)
+    alias kwmconfig="v ~/.kwm/kwmrc"
+    alias khdconfig="v ~/.khdrc"
+    alias imperial="~/Documents/Imperial/year4"
+  ;;
+  Linux)
+    eval `keychain -q --eval ~/.ssh/id_rsa ~/.ssh/id_rsa_github`
+  ;;
+esac
