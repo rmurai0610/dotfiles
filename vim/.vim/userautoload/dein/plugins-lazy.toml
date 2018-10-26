@@ -4,6 +4,7 @@ hook_source = '''
   let g:autotagTagsFile="tags"
 '''
 on_ft = ['c', 'cpp']
+
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
@@ -11,13 +12,16 @@ hook_source = '''
   call deoplete#enable()
   source ~/.vim/userautoload/plugins/deoplete.rc.vim
 '''
+
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 on_event = 'InsertCharPre'
 hook_source = 'source ~/.vim/userautoload/plugins/neosnippet.rc.vim'
+
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 on_event = 'InsertCharPre'
+
 [[plugins]]
 repo = 'mattn/emmet-vim'
 hook_source = '''
@@ -25,3 +29,11 @@ hook_source = '''
   autocmd FileType html,css,scss,sass EmmetInstall
 '''
 on_ft = ['html', 'vue', 'css', 'scss', 'sass']
+
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = ['tex']
+hook_source = '''
+  let g:vimtex_compiler_progname = 'nvr'
+  let g:vimtex_view_method = 'zathura'
+'''

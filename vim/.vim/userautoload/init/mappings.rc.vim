@@ -20,5 +20,8 @@ nnoremap <silent> <C-Space><C-j> :res +5<CR>
 nnoremap <silent> <C-Space><C-k> :res -5<CR>
 nnoremap <silent> <C-Space><C-l> :vertical res +5<CR>
 
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+
 tnoremap jk <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>

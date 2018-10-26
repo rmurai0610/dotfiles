@@ -5,8 +5,9 @@ set t_Co=256
 set mouse=a
 set mousehide
 set number
+set relativenumber
 set showmatch
-set nowrap
+set wrap
 set clipboard=unnamed
 set wildmenu
 set nohlsearch

@@ -1,18 +1,7 @@
 # Path to your oh-my-zsh installation.
-#
-#
-#
-export ZSH=/Users/Riku/.oh-my-zsh
-#export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}
-#export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-#export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-#export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/llvm/bin/:$PATH"
-#export PATH="/usr/local/Cellar/pcl/1.8.1/bin:$PATH"
-export PATH="/Users/Riku/.vim/script:$PATH"
-export PATH="/usr/local/i386elfgcc/bin:$PATH"
-#export PATH="/Users/Riku/clang+llvm-4.0.0-x86_64-apple-darwin/bin:$PATH"
 #export ZSH=/home/riku/.oh-my-zsh
+#export PATH="/home/riku/.local/bin:$PATH"
+#export PATH="/usr/riku/.local/bin:$PATH"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -61,6 +50,7 @@ ZSH_THEME="kolo"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+plugins=(git ssh-agent)
 
 # User configuration
 
@@ -99,17 +89,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
 else
   export NVIM="nvim"
 fi
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias v="$VISUAL"
-# alias vi="$VISUAL"
-# alias vim="$"
-# alias nvim="$VISUAL"
 alias v="$NVIM"
 alias vi="$NVIM"
 alias vim="$NVIM"
@@ -139,26 +118,5 @@ alias reset="git reset"
 alias rebase="git rebase"
 alias branch="git branch"
 alias lg="git lg"
-alias sicstus="rlwrap sicstus"
-alias google-chrome="open -a Google\ Chrome"
 
 alias imperial="~/Documents/Imperial/year4"
-
-alias rsync_tickepon="rsync -avr -delete -P -e  'ssh -i ~/.ssh/gorally_intern.pem' /Users/Riku/influ/tickepon/* giapp07:/home/ec2-user/tickepon"
-alias watch_tickepon="rsync_tickepon; fswatch -or /Users/Riku/influ/tickepon/ | while read f; do rsync_tickepon; done"
-
-export EDITOR=/usr/local/bin/nvim
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Setting ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag -g ""'
-
-# To apply the command to CTRL-T as well
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-export FZF_DEFAULT_COMMAND='
-  (git ls-tree -r --name-only HEAD ||
-   find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
-      sed s/^..//) 2> /dev/null'
-
