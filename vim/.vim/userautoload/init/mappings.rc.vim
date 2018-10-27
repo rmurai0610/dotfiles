@@ -1,8 +1,3 @@
-command WQ wq
-command Wq wq
-command W w
-command Q q
-
 inoremap jk <ESC>
 
 nnoremap <c-S-f> mzgg=G`z

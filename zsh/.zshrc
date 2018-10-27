@@ -1,4 +1,5 @@
 ZSH_THEME="kolo"
+
 plugins=(git)
 plugins=(git ssh-agent)
 

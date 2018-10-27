@@ -8,6 +8,7 @@ set number
 set relativenumber
 set showmatch
 set wrap
+set lbr
 set clipboard=unnamed
 set wildmenu
 set nohlsearch
