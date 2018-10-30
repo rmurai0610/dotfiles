@@ -57,3 +57,5 @@ repo = 'simeji/winresizer'
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = 'source ~/.vim/userautoload/plugins/polyglot.rc.vim'
+[[plugins]]
+repo = "machakann/vim-highlightedyank"

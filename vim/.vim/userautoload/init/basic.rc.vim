@@ -21,6 +21,7 @@ set splitright
 set splitbelow
 set termguicolors
 set lazyredraw
+set inccommand=nosplit
 
 set encoding=utf-8
 
