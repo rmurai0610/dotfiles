@@ -14,13 +14,13 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_event = 'InsertCharPre'
+
+[[plugins]]
 repo = 'Shougo/neosnippet.vim'
 on_event = 'InsertCharPre'
 hook_source = 'source ~/.vim/userautoload/plugins/neosnippet.rc.vim'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-on_event = 'InsertCharPre'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'

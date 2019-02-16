@@ -12,21 +12,7 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme nord
 '''
 [[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = 'source ~/.vim/userautoload/plugins/lightline.rc.vim'
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = 'source ~/.vim/userautoload/plugins/nerdtree.rc.vim'
-[[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
-depends = ['nerdtree']
-[[plugins]]
-repo = 'tpope/vim-vinegar'
-[[plugins]]
 repo = 'scrooloose/nerdcommenter'
-[[plugins]]
-repo = 'easymotion/vim-easymotion'
-hook_add = 'source ~/.vim/userautoload/plugins/easymotion.rc.vim'
 [[plugins]]
 repo = 'Raimondi/delimitMate'
 [[plugins]]
@@ -34,7 +20,11 @@ repo = 'w0rp/ale'
 hook_add = 'source ~/.vim/userautoload/plugins/ale.rc.vim'
 [[plugins]]
 repo = 'maximbaz/lightline-ale'
+hook_add = 'source ~/.vim/userautoload/plugins/lightline-ale.rc.vim'
 depends = ['lightline', 'ale']
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = 'source ~/.vim/userautoload/plugins/lightline.rc.vim'
 [[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
 build = 'bash install.sh'
@@ -45,17 +35,6 @@ hook_add = 'source ~/.vim/userautoload/plugins/denite.rc.vim'
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 [[plugins]]
-repo = 'neoclide/denite-git'
-depends = ['neoclide/vim-easygit']
-[[plugins]]
-repo = 'neoclide/vim-easygit'
-hook_add = '''
-  let g:easygit_enable_command = 1
-'''
-[[plugins]]
 repo = 'simeji/winresizer'
-[[plugins]]
-repo = 'sheerun/vim-polyglot'
-hook_add = 'source ~/.vim/userautoload/plugins/polyglot.rc.vim'
 [[plugins]]
 repo = "machakann/vim-highlightedyank"
