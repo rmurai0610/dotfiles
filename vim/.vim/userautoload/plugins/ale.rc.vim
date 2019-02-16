@@ -40,6 +40,7 @@ let g:ale_c_clang_options = '-std=c11 -Wall'
 let g:ale_c_clangformat_options = '-style="{BasedOnStyle: google, IndentWidth: 4, AccessModifierOffset: -4, ColumnLimit: 119}"'
 
 " C++ setting
+"
 let g:ale_cpp_clang_options = '-std=c++14 -Wall'
 let g:ale_cpp_clangformat_options = '-style="{
       \ BasedOnStyle: google,

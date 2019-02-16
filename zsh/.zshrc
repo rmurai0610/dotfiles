@@ -43,8 +43,6 @@ alias lg="git lg"
 
 case `uname` in
   Darwin)
-    alias kwmconfig="v ~/.kwm/kwmrc"
-    alias khdconfig="v ~/.khdrc"
     alias imperial="~/Documents/Imperial/year4"
   ;;
   Linux)
