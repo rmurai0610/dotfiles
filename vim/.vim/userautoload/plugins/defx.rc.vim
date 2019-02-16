@@ -1,11 +1,11 @@
-nnoremap <C-n> :Defx -split=vertical -winwidth=50 -direction=topleft<CR>
-nnoremap - :Defx <CR>
+nnoremap <C-n> :Defx -split=vertical -winwidth=50 -direction=topleft -toggle<CR>
+nnoremap -     :Defx `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
   nnoremap <silent><buffer><expr> <CR>
-  \ defx#do_action('open')
+  \ defx#do_action('drop')
   nnoremap <silent><buffer><expr> c
   \ defx#do_action('copy')
   nnoremap <silent><buffer><expr> m
@@ -35,8 +35,6 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> h
   \ defx#do_action('cd', ['..'])
   nnoremap <silent><buffer><expr> q
-  \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <C-n>
   \ defx#do_action('quit')
   nnoremap <silent><buffer><expr> j
   \ line('.') == line('$') ? 'gg' : 'j'
