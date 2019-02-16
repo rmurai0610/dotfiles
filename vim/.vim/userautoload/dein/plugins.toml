@@ -12,6 +12,9 @@ hook_add = '''
   au MyAutoCmd VimEnter * nested colorscheme nord
 '''
 [[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = 'source ~/.vim/userautoload/plugins/defx.rc.vim'
+[[plugins]]
 repo = 'scrooloose/nerdcommenter'
 [[plugins]]
 repo = 'Raimondi/delimitMate'
