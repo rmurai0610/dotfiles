@@ -19,8 +19,8 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'vue': ['eslint'],
 \   'python': ['flake8'],
-\   'c': ['clang'],
-\   'cpp': ['clang'],
+\   'c': ['clangd'],
+\   'cpp': ['clangd'],
 \}
 
 let g:ale_fixers = {
@@ -36,12 +36,13 @@ let g:ale_python_flake8_options = '--max-line-length 120'
 let g:ale_python_autopep8_options = '--max-line-length 120'
 
 " C setting
-let g:ale_c_clang_options = '-std=c11 -Wall'
+let g:ale_c_parse_compile_commands = 1
+let g:ale_c_clang_options = '-std=c14 -Wall'
 let g:ale_c_clangformat_options = '-style="{BasedOnStyle: google, IndentWidth: 4, AccessModifierOffset: -4, ColumnLimit: 119}"'
 
 " C++ setting
-"
-let g:ale_cpp_clang_options = '-std=c++14 -Wall'
+let g:ale_cpp_parse_compile_commands = 1
+let g:ale_cpp_clangd_options = '-std=c++14 -Wall'
 let g:ale_cpp_clangformat_options = '-style="{
       \ BasedOnStyle: google,
       \ IndentWidth: 4,

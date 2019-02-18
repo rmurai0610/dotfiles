@@ -18,11 +18,9 @@ alias vim="$NVIM"
 alias nvim="$NVIM"
 
 
-alias ohmyzsh="v ~/.oh-my-zsh"
 alias zshconfig="v ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias vimconfig="v ~/.vimrc"
-alias tmuxconfig="v ~/.tmux.conf"
 
 alias gst="git status"
 alias add="git add"
