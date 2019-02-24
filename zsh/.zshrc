@@ -38,6 +38,9 @@ alias rebase="git rebase"
 alias branch="git branch"
 alias lg="git lg"
 
+if [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
 
 case `uname` in
   Darwin)

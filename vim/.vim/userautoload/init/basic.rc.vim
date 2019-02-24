@@ -9,6 +9,7 @@ set relativenumber
 set showmatch
 set wrap
 set lbr
+set cursorline
 set clipboard=unnamed
 set wildmenu
 set nohlsearch
