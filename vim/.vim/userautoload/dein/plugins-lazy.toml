@@ -37,3 +37,7 @@ hook_source = '''
   let g:vimtex_compiler_progname = 'nvr'
   let g:vimtex_view_method = 'zathura'
 '''
+
+[[plugins]]
+repo = 'vim-scripts/opencl.vim'
+on_ft = ['cl']
