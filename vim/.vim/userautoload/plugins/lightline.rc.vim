@@ -1,20 +1,11 @@
 set laststatus=2
 set noshowmode
 
-"let g:lightline#ale#indicator_checking = "\uf110"
-"let g:lightline#ale#indicator_warnings = "\uf071"
-"let g:lightline#ale#indicator_errors = "\uf05e"
-"let g:lightline#ale#indicator_ok = "\uf00c"
-
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
-      \   'left': [['mode', 'paste' ],
-      \            ['gitbranch', 'readonly', 'filename', 'modified']],
+      \   'left': [['mode', 'paste' ]],
       \   'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok']],
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
       \ },
       \ 'component_expand': {
       \  'linter_checking': 'lightline#ale#checking',

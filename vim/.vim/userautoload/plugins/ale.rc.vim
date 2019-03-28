@@ -20,7 +20,7 @@ let g:ale_linters = {
 \   'vue': ['eslint'],
 \   'python': ['flake8'],
 \   'c': ['clangd'],
-\   'cpp': ['clangd'],
+\   'cpp': ['clangcheck'],
 \}
 
 let g:ale_fixers = {
