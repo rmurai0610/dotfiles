@@ -4,7 +4,7 @@ set noshowmode
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
-      \   'left': [['mode', 'paste' ]],
+      \   'left': [['mode', 'paste'], ['filename']],
       \   'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok']],
       \ },
       \ 'component_expand': {

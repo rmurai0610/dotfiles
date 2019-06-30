@@ -7,8 +7,8 @@ set mousehide
 set number
 set relativenumber
 set showmatch
-set wrap
 set lbr
+set nowrap
 set cursorline
 set clipboard=unnamed
 set wildmenu
@@ -48,6 +48,14 @@ autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
 " tags
 set tags=.tags;~
 
+" Wrapping for text files
+function! SetTextFileWrap()
+  set wrap
+  nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+  nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+endfunction
+au BufReadPost,BufNewFile *.md,*.txt,*.tex call SetTextFileWrap()
+
 " Save undo info
 let s:undo_dir = expand('~/.vim/undo')
 if !isdirectory(s:undo_dir)
@@ -58,6 +66,9 @@ set undofile
 
 " No swap files
 set noswapfile
+
+" Open latex
+let g:tex_flavor = "latex"
 
 " Close quickfix window automatically
 aug QFClose

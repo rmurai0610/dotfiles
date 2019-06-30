@@ -7,6 +7,6 @@ imap <expr><TAB>
  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#enable_completed_snippet = 1
+let g:neosnippet#enable_completed_snippet = 0
 let g:neosnippet#expand_word_boundary = 1
 autocmd MyAutoCmd CompleteDone * call neosnippet#complete_done()

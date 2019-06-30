@@ -46,3 +46,8 @@ repo = "edkolev/tmuxline.vim"
 hook_add = 'source ~/.vim/userautoload/plugins/tmuxline.rc.vim'
 [[plugins]]
 repo = "christoomey/vim-tmux-navigator"
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+hook_add = 'source ~/.vim/userautoload/plugins/echodoc.rc.vim'
+[[plugins]]
+repo = 'mbbill/undotree'

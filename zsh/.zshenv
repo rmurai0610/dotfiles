@@ -2,7 +2,7 @@ case `uname` in
   Darwin)
     export ZSH=/Users/Riku/.oh-my-zsh
     export PATH="/usr/local/opt/llvm/bin/:$PATH"
-
+    export PATH="/Users/Riku/Library/Python/3.7/bin:$PATH"
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
     if command -v pyenv 1>/dev/null 2>&1;
