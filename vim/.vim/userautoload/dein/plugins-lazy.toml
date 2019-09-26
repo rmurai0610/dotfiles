@@ -5,22 +5,28 @@ hook_source = '''
 '''
 on_ft = ['c', 'cpp']
 
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# on_i = 1
+# hook_source = '''
+#   call deoplete#enable()
+#   source ~/.vim/userautoload/plugins/deoplete.rc.vim
+# '''
+#
+# [[plugins]]
+# repo = 'Shougo/neosnippet-snippets'
+# on_event = 'InsertCharPre'
+#
+# [[plugins]]
+# repo = 'Shougo/neosnippet.vim'
+# on_event = 'InsertCharPre'
+# hook_source = 'source ~/.vim/userautoload/plugins/neosnippet.rc.vim'
+
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
+repo = 'neoclide/coc.nvim'
 on_i = 1
-hook_source = '''
-  call deoplete#enable()
-  source ~/.vim/userautoload/plugins/deoplete.rc.vim
-'''
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-on_event = 'InsertCharPre'
-
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-on_event = 'InsertCharPre'
-hook_source = 'source ~/.vim/userautoload/plugins/neosnippet.rc.vim'
+rev = 'release'
+hook_source = 'source ~/.vim/userautoload/plugins/coc.rc.vim'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
