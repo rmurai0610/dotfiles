@@ -1,5 +1,9 @@
-how-icons:            false
-rofi.modi:            combi
-rofi.theme:           ./nord.rasi
+how-icons:             false
+rofi.modi:             combi
+rofi.combi-mode:       "drun,run,ssh"
+rofi.matching:         fuzzy
+rofi.levenshtein-sort: true
+rofi.theme:            ./nord.rasi
+
 
 

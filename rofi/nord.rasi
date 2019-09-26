@@ -1,20 +1,20 @@
 * {
-    nord0:			 #2E3440;
-    nord1: 			 #3B4252;
-    nord2: 			 #434C5E;
-    nord3: 			 #4C566A;
-    nord4: 			 #D8DEE9;
-    nord5:  			 #E5E9F0;
-    nord6:  			 #ECEFF4;
-    nord7: 			 #8FBCBB;
-    nord8:   			 #88C0D0;
-    nord9:  			 #81A1C1;
-    nord10: 			 #5E81AC;
-    nord11: 			 #BF616A;
-    nord12: 			 #D08770;
-    nord13: 			 #EBCB8B;
-    nord14: 			 #A3BE8C;
-    nord15: 			 #B48EAD;
+    nord0:                       #2E3440;
+    nord1:                       #3B4252;
+    nord2:                       #434C5E;
+    nord3:                       #4C566A;
+    nord4:                       #D8DEE9;
+    nord5:                       #E5E9F0;
+    nord6:                       #ECEFF4;
+    nord7:                       #8FBCBB;
+    nord8:                       #88C0D0;
+    nord9:                       #81A1C1;
+    nord10:                      #5E81AC;
+    nord11:                      #BF616A;
+    nord12:                      #D08770;
+    nord13:                      #EBCB8B;
+    nord14:                      #A3BE8C;
+    nord15:                      #B48EAD;
     background:                  @nord0;
     foreground:                  @nord4;
     selected-normal-foreground:  @nord4;
@@ -49,17 +49,16 @@
 
 #window {
     background-color: @background;
+    border:           2px;
+    border-color:     @separatorcolor;
 }
 
 #mainbox {
-    border:  2;
-    padding: 10;
+    padding: 10px;
 }
 
 #message {
-    border:       2px 2px 2px ;
-    border-color: @separatorcolor;
-    padding:      10 ;
+    padding: 10px;
 }
 
 #textbox {
@@ -68,13 +67,16 @@
 
 #listview {
     fixed-height: 0;
-    padding:	  5 0 0;
-    spacing:      5px ;
+    border:       2px 0px 0px 0px;
+    border-color: @separatorcolor;
+    scrollbar:    false;
+    padding:      5 0 0;
+    spacing:      0px;
 }
 
 #element {
     border:  0;
-    padding: 5px ;
+    padding: 10px;
 }
 
 #element.normal.normal {
@@ -127,14 +129,6 @@
     text-color:       @selected-normal-foreground;
 }
 
-#inputbar {
-    spacing:    5;
-    text-color: @normal-foreground;
-    padding:    5px ;
-    border:	0 0 1;
-    border-color: @separatorcolor;
-}
-
 #case-indicator {
     spacing:    0;
     text-color: @normal-foreground;
@@ -145,7 +139,22 @@
     text-color: @normal-foreground;
 }
 
+
+#inputbar {
+    padding:    10px;
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
 #prompt {
     spacing:    0;
     text-color: @normal-foreground;
 }
+
+#textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
+}
+
+
