@@ -27,10 +27,10 @@ depends = ['lightline', 'ale']
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = 'source ~/.vim/userautoload/plugins/lightline.rc.vim'
-[[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-build = 'bash install.sh'
-hook_add = 'source ~/.vim/userautoload/plugins/language-client.rc.vim'
+# [[plugins]]
+# repo = 'autozimu/LanguageClient-neovim'
+# build = 'bash install.sh'
+# hook_add = 'source ~/.vim/userautoload/plugins/language-client.rc.vim'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = 'source ~/.vim/userautoload/plugins/denite.rc.vim'

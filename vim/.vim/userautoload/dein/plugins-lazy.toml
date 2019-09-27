@@ -1,9 +1,9 @@
-[[plugins]]
-repo = 'craigemery/vim-autotag'
-hook_source = '''
-  let g:autotagTagsFile="tags"
-'''
-on_ft = ['c', 'cpp']
+# [[plugins]]
+# repo = 'craigemery/vim-autotag'
+# hook_source = '''
+#   let g:autotagTagsFile="tags"
+# '''
+# on_ft = ['c', 'cpp']
 
 # [[plugins]]
 # repo = 'Shougo/deoplete.nvim'
