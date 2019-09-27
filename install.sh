@@ -6,10 +6,10 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     configs=(rofi alacritty)
     for config in "${configs[@]}"; do
-        ln -sf $DIR/$config ~/.config/$config
+        ln -sn $DIR/$config ~/.config/$config > /dev/null 2>&1
     done
     # Vim settings
-    ln -sf $DIR/nvim ~/.config/nvim
-    ln -sf $DIR/vim/.vimrc ~/.vimrc
-    ln -sf $DIR/vim/.vim ~/.vim
+    ln -sn $DIR/nvim ~/.config/nvim > /dev/null 2>&1
+    ln -sn $DIR/vim/.vimrc ~/.vimrc > /dev/null 2>&1
+    ln -sn $DIR/vim/.vim ~/.vim > /dev/null 2>&1
 fi
