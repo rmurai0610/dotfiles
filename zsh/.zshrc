@@ -45,6 +45,7 @@ fi
 case `uname` in
   Darwin)
     alias imperial="~/Documents/Imperial/year4"
+    alias lldb="/usr/local/opt/llvm/bin/lldb"
   ;;
   Linux)
     eval `keychain -q --eval ~/.ssh/id_rsa ~/.ssh/id_rsa_github`
