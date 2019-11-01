@@ -6,8 +6,7 @@ depends = ['dein.vim']
 [[plugins]]
 repo = 'arcticicestudio/nord-vim'
 hook_add = '''
-  let g:nord_italic = 1
-  let g:nord_italic_comments = 1
+  let g:nord_italic_comments = 0
   au MyAutoCmd VimEnter * nested colorscheme nord
 '''
 [[plugins]]
@@ -18,19 +17,8 @@ repo = 'scrooloose/nerdcommenter'
 [[plugins]]
 repo = 'Raimondi/delimitMate'
 [[plugins]]
-repo = 'w0rp/ale'
-hook_add = 'source ~/.vim/userautoload/plugins/ale.rc.vim'
-[[plugins]]
-repo = 'maximbaz/lightline-ale'
-hook_add = 'source ~/.vim/userautoload/plugins/lightline-ale.rc.vim'
-depends = ['lightline', 'ale']
-[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = 'source ~/.vim/userautoload/plugins/lightline.rc.vim'
-# [[plugins]]
-# repo = 'autozimu/LanguageClient-neovim'
-# build = 'bash install.sh'
-# hook_add = 'source ~/.vim/userautoload/plugins/language-client.rc.vim'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = 'source ~/.vim/userautoload/plugins/denite.rc.vim'
@@ -50,3 +38,10 @@ repo = 'Shougo/echodoc.vim'
 hook_add = 'source ~/.vim/userautoload/plugins/echodoc.rc.vim'
 [[plugins]]
 repo = 'mbbill/undotree'
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = 'source ~/.vim/userautoload/plugins/coc.rc.vim'
+[[plugins]]
+repo = 'neoclide/coc-denite'
+depends = ['coc.nvim']

@@ -20,7 +20,6 @@ set scrolloff=3
 set wildmenu
 set splitright
 set splitbelow
-set termguicolors
 set lazyredraw
 set inccommand=nosplit
 
