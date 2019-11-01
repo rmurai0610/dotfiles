@@ -7,6 +7,7 @@ if [ "$(uname)" == "Darwin" ]; then
     ln -sn $DIR/vim/.vim ~/.vim     > /dev/null 2>&1
     # tmux settings
     ln -sn $DIR/tmux/.tmux.conf ~/.tmux.conf > /dev/null 2>&1
+    ln -sn $DIR/tmux/.tmux ~/.tmux           > /dev/null 2>&1
     # zsh settings
     ln -sn $DIR/zsh/.zshrc ~/.zshrc   > /dev/null 2>&1
     ln -sn $DIR/zsh/.zshenv ~/.zshenv > /dev/null 2>&1
@@ -19,4 +20,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     ln -sn $DIR/nvim ~/.config/nvim > /dev/null 2>&1
     ln -sn $DIR/vim/.vimrc ~/.vimrc > /dev/null 2>&1
     ln -sn $DIR/vim/.vim ~/.vim > /dev/null 2>&1
+fi
+
+# Install tmux plugin manager
+if [ ! -d "~/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
