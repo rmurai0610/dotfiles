@@ -22,7 +22,3 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     ln -sn $DIR/vim/.vim ~/.vim > /dev/null 2>&1
 fi
 
-# Install tmux plugin manager
-if [ ! -d "~/.tmux/plugins/tpm" ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
