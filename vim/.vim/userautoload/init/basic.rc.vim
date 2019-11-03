@@ -1,7 +1,6 @@
 " General
 let mapleader = "\<Space>"
 syntax enable
-set t_Co=256
 set mouse=a
 set mousehide
 set number
@@ -22,6 +21,9 @@ set splitright
 set splitbelow
 set lazyredraw
 set inccommand=nosplit
+if !has('gui_running')
+  set t_Co=256
+endif
 
 set encoding=utf-8
 

@@ -19,6 +19,7 @@ repo = 'Raimondi/delimitMate'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = 'source ~/.vim/userautoload/plugins/lightline.rc.vim'
+depends = ['nord-vim']
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = 'source ~/.vim/userautoload/plugins/denite.rc.vim'
