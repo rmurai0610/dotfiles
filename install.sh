@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 if [ "$(uname)" == "Darwin" ]; then
+    echo "Setting up for os-x machine"
     # Vim settings
     ln -sn $DIR/nvim ~/.config/nvim > /dev/null 2>&1
     ln -sn ~/.config/nvim/coc-settings-osx.json ~/.config/nvim/coc-settings.json > /dev/null 2>&1
@@ -13,6 +14,7 @@ if [ "$(uname)" == "Darwin" ]; then
     ln -sn $DIR/zsh/.zshrc ~/.zshrc   > /dev/null 2>&1
     ln -sn $DIR/zsh/.zshenv ~/.zshenv > /dev/null 2>&1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    echo "Setting up for linux machine"
     configs=(rofi alacritty)
     for config in "${configs[@]}"; do
         ln -sn $DIR/$config ~/.config/$config > /dev/null 2>&1
@@ -30,3 +32,4 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     ln -sn $DIR/zsh/.zshenv ~/.zshenv > /dev/null 2>&1
 fi
 
+echo "Done!"
