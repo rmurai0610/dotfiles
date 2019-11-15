@@ -4,8 +4,8 @@ case `uname` in
     #export PATH="/usr/local/opt/llvm/bin/:$PATH"
     export PATH=$(getconf PATH)
     export PATH="/usr/local/bin:$PATH"
-    export PATH="/Users/Riku/phd/gta/mycopy/pintos-skeleton/mac-i686-gcc-binaries/bin:$PATH"
-    export PATH="/Users/Riku/phd/gta/mycopy/pintos-skeleton/src/utils:$PATH"
+    export PATH="/Users/Riku/phd/gta/pintos/mac-i686-gcc-binaries/bin:$PATH"
+    export PATH="/Users/Riku/phd/gta/pintos/src/utils:$PATH"
 
     #export PATH="/Users/Riku/Library/Python/3.7/bin:$PATH"
     #export PATH="$PYENV_ROOT/bin:$PATH"
