@@ -23,6 +23,8 @@ case `uname` in
     export ZSH=/home/riku/.oh-my-zsh
     export PATH="/home/riku/.local/bin:$PATH"
     export PATH="/usr/riku/.local/bin:$PATH"
+    export PATH="/usr/local/cuda/bin:$PATH"
+    export CUDADIR="/usr/local/cuda"
     export EDITOR=`which nvim`
   ;;
 esac
