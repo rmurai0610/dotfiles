@@ -36,7 +36,7 @@ alias stash="git stash"
 alias reset="git reset"
 alias rebase="git rebase"
 alias branch="git branch"
-alias lg="git lg"
+alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 if [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
