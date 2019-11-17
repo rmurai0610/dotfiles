@@ -10,7 +10,6 @@ case `uname` in
     #export PATH="/Users/Riku/Library/Python/3.7/bin:$PATH"
     #export PATH="$PYENV_ROOT/bin:$PATH"
     #export PATH="/usr/local/anaconda3:$PATH"
-    export EDITOR=`which nvim`
     # export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib"
     # export CPPFLAGS="-I/usr/local/opt/llvm/include"
     #export PYENV_ROOT="$HOME/.pyenv"
@@ -25,6 +24,8 @@ case `uname` in
     export PATH="/usr/riku/.local/bin:$PATH"
     export PATH="/usr/local/cuda/bin:$PATH"
     export CUDADIR="/usr/local/cuda"
-    export EDITOR=`which nvim`
   ;;
 esac
+export EDITOR=`which nvim`
+git config --global user.name "Riku Murai"
+git config --global user.email rmurai0610@gmail.com
