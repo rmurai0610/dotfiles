@@ -6,6 +6,7 @@ depends = ['dein.vim']
 [[plugins]]
 repo = 'arcticicestudio/nord-vim'
 hook_add = '''
+  let g:nord_bold_vertical_split_line = 0
   let g:nord_italic_comments = 0
   au MyAutoCmd VimEnter * nested colorscheme nord
 '''
