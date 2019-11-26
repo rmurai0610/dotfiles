@@ -15,16 +15,17 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>qf  <Plug>(coc-fix-current)
-nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <silent> gd          <Plug>(coc-definition)
+nmap <silent> gy          <Plug>(coc-type-definition)
+nmap <silent> gi          <Plug>(coc-implementation)
+nmap <silent> gr          <Plug>(coc-references)
+nmap <silent> <leader>qf  <Plug>(coc-fix-current)
+nmap <silent> <leader>ac  <Plug>(coc-codeaction)
+nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
