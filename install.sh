@@ -11,6 +11,10 @@ if [ "$(uname)" == "Darwin" ]; then
     ln -sn $DIR/tmux/.tmux.conf ~/.tmux.conf > /dev/null 2>&1
     ln -sn $DIR/tmux/.tmux ~/.tmux           > /dev/null 2>&1
     # zsh settings
+    # install oh my zsh
+    if [ ! -d ~/.oh-my-zsh ]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
     ln -sn $DIR/zsh/.zshrc ~/.zshrc   > /dev/null 2>&1
     ln -sn $DIR/zsh/.zshenv ~/.zshenv > /dev/null 2>&1
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
@@ -28,6 +32,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     ln -sn $DIR/tmux/.tmux.conf ~/.tmux.conf > /dev/null 2>&1
     ln -sn $DIR/tmux/.tmux ~/.tmux           > /dev/null 2>&1
     # zsh settings
+    # install oh my zsh
+    if [ ! -d ~/.oh-my-zsh ]; then
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    fi
     ln -sn $DIR/zsh/.zshrc ~/.zshrc   > /dev/null 2>&1
     ln -sn $DIR/zsh/.zshenv ~/.zshenv > /dev/null 2>&1
 fi
