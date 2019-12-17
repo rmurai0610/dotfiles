@@ -18,10 +18,6 @@ repo = 'scrooloose/nerdcommenter'
 [[plugins]]
 repo = 'Raimondi/delimitMate'
 [[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = 'source ~/.vim/userautoload/plugins/lightline.rc.vim'
-depends = ['nord-vim']
-[[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = 'source ~/.vim/userautoload/plugins/denite.rc.vim'
 [[plugins]]
@@ -36,9 +32,6 @@ hook_add = 'source ~/.vim/userautoload/plugins/tmuxline.rc.vim'
 [[plugins]]
 repo = "christoomey/vim-tmux-navigator"
 [[plugins]]
-repo = 'Shougo/echodoc.vim'
-hook_add = 'source ~/.vim/userautoload/plugins/echodoc.rc.vim'
-[[plugins]]
 repo = 'mbbill/undotree'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -47,3 +40,7 @@ hook_add = 'source ~/.vim/userautoload/plugins/coc.rc.vim'
 [[plugins]]
 repo = 'neoclide/coc-denite'
 depends = ['coc.nvim']
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
