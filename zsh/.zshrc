@@ -5,13 +5,6 @@ plugins=(git ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
-setopt IGNORE_EOF
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-  export NVIM="nvr"
-else
-  export NVIM="nvim"
-fi
-
 alias v="$NVIM"
 alias vi="$NVIM"
 alias vim="$NVIM"
@@ -48,6 +41,6 @@ case `uname` in
     alias lldb="/usr/local/opt/llvm/bin/lldb"
   ;;
   Linux)
-    eval `keychain -q --eval ~/.ssh/id_rsa ~/.ssh/id_rsa_github`
+    #eval `keychain -q --eval ~/.ssh/id_rsa ~/.ssh/id_rsa_github`
   ;;
 esac
