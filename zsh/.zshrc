@@ -5,6 +5,7 @@ plugins=(git ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
+export NVIM="nvim"
 alias v="$NVIM"
 alias vi="$NVIM"
 alias vim="$NVIM"
