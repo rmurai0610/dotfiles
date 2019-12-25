@@ -2,6 +2,10 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 if [ "$(uname)" == "Darwin" ]; then
     echo "Setting up for os-x machine"
+    configs=(alacritty)
+    for config in "${configs[@]}"; do
+        ln -sn $DIR/$config ~/.config/$config > /dev/null 2>&1
+    done
     # Vim settings
     ln -sn $DIR/nvim ~/.config/nvim > /dev/null 2>&1
     ln -sn ~/.config/nvim/coc-settings-osx.json ~/.config/nvim/coc-settings.json > /dev/null 2>&1
