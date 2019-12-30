@@ -1,9 +1,33 @@
-ZSH_THEME="kolo"
+source ~/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-plugins=(git)
-plugins=(git ssh-agent)
+autoload -Uz colors
+colors
 
-source $ZSH/oh-my-zsh.sh
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':completion:*:default' menu select=2
+autoload -Uz compinit
+compinit
+
+zplugin light zsh-users/zsh-completions
+zplugin light zdharma/fast-syntax-highlighting
+
+zplugin ice pick"async.zsh" src"pure.zsh"
+zplugin light rmurai0610/pure
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
+setopt auto_param_slash
+setopt mark_dirs
+setopt auto_menu
+setopt hist_ignore_all_dups
+setopt auto_cd
+
 
 export NVIM="nvim"
 alias v="$NVIM"
@@ -31,6 +55,13 @@ alias reset="git reset"
 alias rebase="git rebase"
 alias branch="git branch"
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+
+alias l='ls -ltrG'
+alias la='ls -laG'
+alias ll='ls -lG'
+alias ls='ls -G'
+alias grep='grep --color=auto'
+alias ...='cd ../../'
 
 if [ -z "$TMUX" ]; then
     tmux attach -t default || tmux new -s default
