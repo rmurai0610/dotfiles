@@ -49,32 +49,34 @@ autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
 
 " Status line
 set laststatus=2
+function! GetGitBranch()
+  let l:is_git_dir = system('echo -n $(git rev-parse --is-inside-work-tree)')
+  if l:is_git_dir is# 'true'
+    let s:git_branch = ' Git: ' . trim(system('git rev-parse --abbrev-ref HEAD'))
+  else
+    let s:git_branch = ''
+  endif
+endfunction
+
+autocmd BufEnter * call GetGitBranch()
 
 function! StatusLineMode()
   let l:current_mode = mode()
-  let l:current_mode_name = 'Visual'
-  let l:current_mode_color = '#DiffChange#'
   if l:current_mode ==? 'n'
-    let l:current_mode_name = 'Normal'
-    let l:current_mode_color = '#DiffText#'
+    let s:current_mode_name = 'Normal'
+    let s:current_mode_color = '#DiffText#'
   elseif l:current_mode ==? 'i'
-    let l:current_mode_name = 'Insert'
-    let l:current_mode_color = '#DiffAdd#'
+    let s:current_mode_name = 'Insert'
+    let s:current_mode_color = '#DiffAdd#'
   elseif l:current_mode ==? 'R'
-    let l:current_mode_name = 'Replace'
-    let l:current_mode_color = '#DiffDelete#'
+    let s:current_mode_name = 'Replace'
+    let s:current_mode_color = '#DiffDelete#'
   endif
-  return '%' . l:current_mode_color . ' ' . l:current_mode_name . ' %*'
+  return '%' . s:current_mode_color . ' ' . s:current_mode_name . ' %*'
 endfunction
 
 function! StatusLineGit()
-  let l:is_git_dir = system('echo -n $(git rev-parse --is-inside-work-tree)')
-  if l:is_git_dir is# 'true'
-    let l:git_branch = ' Git: ' . trim(system('git rev-parse --abbrev-ref HEAD'))
-  else
-    let l:git_branch = ''
-  endif
-  return '%#TermCursorNC#' . l:git_branch . ' '
+  return '%#TermCursorNC#' . s:git_branch . ' '
 endfunction
 
 function! SetStatusLine()
