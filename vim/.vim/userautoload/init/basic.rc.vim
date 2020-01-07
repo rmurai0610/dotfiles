@@ -1,4 +1,5 @@
 " General
+"
 let mapleader = "\<Space>"
 syntax enable
 set mouse=a
@@ -46,9 +47,43 @@ autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype c setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
 
-" tags
-set tags=.tags;~
+" Status line
+set laststatus=2
 
+function! StatusLineMode()
+  let l:current_mode = mode()
+  let l:current_mode_name = 'Visual'
+  let l:current_mode_color = '#DiffChange#'
+  if l:current_mode ==? 'n'
+    let l:current_mode_name = 'Normal'
+    let l:current_mode_color = '#DiffText#'
+  elseif l:current_mode ==? 'i'
+    let l:current_mode_name = 'Insert'
+    let l:current_mode_color = '#DiffAdd#'
+  elseif l:current_mode ==? 'R'
+    let l:current_mode_name = 'Replace'
+    let l:current_mode_color = '#DiffDelete#'
+  endif
+  return '%' . l:current_mode_color . ' ' . l:current_mode_name . ' %*'
+endfunction
+
+function! StatusLineGit()
+  let l:is_git_dir = system('echo -n $(git rev-parse --is-inside-work-tree)')
+  if l:is_git_dir is# 'true'
+    let l:git_branch = ' Git: ' . trim(system('git rev-parse --abbrev-ref HEAD'))
+  else
+    let l:git_branch = ''
+  endif
+  return '%#TermCursorNC#' . l:git_branch . ' '
+endfunction
+
+function! SetStatusLine()
+  return StatusLineMode() . '%#TermCursorNC# %f %*' . '%=' . StatusLineGit()
+endfunction
+
+
+set noshowmode
+set statusline=%!SetStatusLine()
 " Wrapping for text files
 function! SetTextFileWrap()
   set wrap

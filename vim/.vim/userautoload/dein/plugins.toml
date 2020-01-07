@@ -40,7 +40,3 @@ hook_add = 'source ~/.vim/userautoload/plugins/coc.rc.vim'
 [[plugins]]
 repo = 'neoclide/coc-denite'
 depends = ['coc.nvim']
-[[plugins]]
-repo = 'vim-airline/vim-airline'
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
