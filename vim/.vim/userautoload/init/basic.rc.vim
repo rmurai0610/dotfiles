@@ -62,17 +62,19 @@ autocmd BufEnter * call GetGitBranch()
 
 function! StatusLineMode()
   let l:current_mode = mode()
-  if l:current_mode ==? 'n'
-    let s:current_mode_name = 'Normal'
-    let s:current_mode_color = '#DiffText#'
-  elseif l:current_mode ==? 'i'
-    let s:current_mode_name = 'Insert'
-    let s:current_mode_color = '#DiffAdd#'
+  let l:current_mode_name = 'Normal'
+  let l:current_mode_color = '#DiffText#'
+  if l:current_mode ==? 'i'
+    let l:current_mode_name = 'Insert'
+    let l:current_mode_color = '#DiffAdd#'
   elseif l:current_mode ==? 'R'
-    let s:current_mode_name = 'Replace'
-    let s:current_mode_color = '#DiffDelete#'
+    let l:current_mode_name = 'Replace'
+    let l:current_mode_color = '#DiffDelete#'
+  elseif l:current_mode ==? 'V' || l:current_mode ==?'v' || l:current_mode ==? "\<C-V>"
+    let l:current_mode_name = 'Visual'
+    let l:current_mode_color = '#DiffChange#'
   endif
-  return '%' . s:current_mode_color . ' ' . s:current_mode_name . ' %*'
+  return '%' . l:current_mode_color . ' ' . l:current_mode_name . ' %*'
 endfunction
 
 function! StatusLineGit()
