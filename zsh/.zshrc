@@ -17,17 +17,18 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light rmurai0610/pure
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+zplugin light zsh-users/zsh-history-substring-search
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=0
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=0
 
 setopt auto_param_slash
 setopt mark_dirs
 setopt auto_menu
 setopt hist_ignore_all_dups
 setopt auto_cd
-
+setopt append_history
 
 export NVIM="nvim"
 alias v="$NVIM"
@@ -43,6 +44,7 @@ alias vimconfig="v ~/.vimrc"
 alias gst="git status"
 alias add="git add"
 alias commit="git commit"
+alias gp="git push"
 alias push="git push"
 alias pull="git pull"
 alias merge="git merge"
