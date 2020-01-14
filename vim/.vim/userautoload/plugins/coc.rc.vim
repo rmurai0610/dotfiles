@@ -1,3 +1,10 @@
+let g:coc_global_extensions = ['coc-highlight', 'coc-python']
+
+set hidden
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -38,3 +45,5 @@ function! s:show_documentation()
   endif
 endfunction
 
+au CursorHold * sil call CocActionAsync('highlight')
+au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
