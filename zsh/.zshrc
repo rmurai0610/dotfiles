@@ -22,13 +22,16 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=0
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=0
+HISTFILE=~/.zhistory
+SAVEHIST=1000
 
 setopt auto_param_slash
 setopt mark_dirs
 setopt auto_menu
 setopt hist_ignore_all_dups
 setopt auto_cd
-setopt append_history
+setopt inc_append_history
+setopt share_history
 
 export NVIM="nvim"
 alias v="$NVIM"
