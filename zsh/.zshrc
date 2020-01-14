@@ -61,6 +61,10 @@ alias rebase="git rebase"
 alias branch="git branch"
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 case `uname` in
   Darwin)
     alias l='ls -ltrG'
