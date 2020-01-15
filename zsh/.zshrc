@@ -5,7 +5,8 @@ autoload -Uz _zplugin
 autoload -Uz colors
 colors
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*:default' menu select=2
 autoload -Uz compinit
@@ -17,13 +18,12 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light rmurai0610/pure
 
-zplugin light zsh-users/zsh-history-substring-search
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=0
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=0
+bindkey "$terminfo[kcuu1]" history-search-backward
+bindkey "$terminfo[kcud1]" history-search-forward
+
 HISTFILE=~/.zhistory
-SAVEHIST=1000
+SAVEHIST=100000
+HISTSIZE=100000
 
 setopt auto_param_slash
 setopt mark_dirs
