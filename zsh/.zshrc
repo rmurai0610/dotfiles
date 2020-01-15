@@ -18,12 +18,6 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light rmurai0610/pure
 
-bindkey "$terminfo[kcuu1]" history-search-backward
-bindkey "$terminfo[kcud1]" history-search-forward
-
-HISTFILE=~/.zhistory
-SAVEHIST=100000
-HISTSIZE=100000
 
 setopt auto_param_slash
 setopt mark_dirs
@@ -32,6 +26,21 @@ setopt hist_ignore_all_dups
 setopt auto_cd
 setopt inc_append_history
 setopt share_history
+
+bindkey -e
+setopt EMACS
+
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+
+
+HISTFILE=~/.zhistory
+SAVEHIST=100000
+HISTSIZE=100000
 
 export NVIM="nvim"
 alias v="$NVIM"
