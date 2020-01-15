@@ -10,7 +10,7 @@ set showmatch
 set lbr
 set nowrap
 set cursorline
-set clipboard=unnamed
+set clipboard=unnamedplus
 set wildmenu
 set nohlsearch
 set fillchars=""
