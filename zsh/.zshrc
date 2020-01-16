@@ -86,6 +86,7 @@ case `uname` in
     alias la='ls -la --color=auto'
     alias ll='ls -l --color=auto'
     alias ls='ls --color=auto'
+    alias open='xdg-open'
   ;;
 esac
 
