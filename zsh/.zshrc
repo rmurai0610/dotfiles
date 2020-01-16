@@ -5,7 +5,8 @@ autoload -Uz _zplugin
 autoload -Uz colors
 colors
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*:default' menu select=2
 autoload -Uz compinit
@@ -17,17 +18,29 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice pick"async.zsh" src"pure.zsh"
 zplugin light rmurai0610/pure
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
 
 setopt auto_param_slash
 setopt mark_dirs
 setopt auto_menu
 setopt hist_ignore_all_dups
 setopt auto_cd
+setopt inc_append_history
+setopt share_history
 
+bindkey -e
+setopt EMACS
+
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+
+
+HISTFILE=~/.zhistory
+SAVEHIST=100000
+HISTSIZE=100000
 
 export NVIM="nvim"
 alias v="$NVIM"
@@ -43,6 +56,7 @@ alias vimconfig="v ~/.vimrc"
 alias gst="git status"
 alias add="git add"
 alias commit="git commit"
+alias gp="git push"
 alias push="git push"
 alias pull="git pull"
 alias merge="git merge"
@@ -56,10 +70,25 @@ alias rebase="git rebase"
 alias branch="git branch"
 alias lg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
-alias l='ls -ltrG'
-alias la='ls -laG'
-alias ll='ls -lG'
-alias ls='ls -G'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+case `uname` in
+  Darwin)
+    alias l='ls -ltrG'
+    alias la='ls -laG'
+    alias ll='ls -lG'
+    alias ls='ls -G'
+  ;;
+  Linux)
+    alias l='ls -ltr --color=auto'
+    alias la='ls -la --color=auto'
+    alias ll='ls -l --color=auto'
+    alias ls='ls --color=auto'
+  ;;
+esac
+
 alias grep='grep --color=auto'
 alias ...='cd ../../'
 

@@ -27,9 +27,6 @@ repo = 'simeji/winresizer'
 [[plugins]]
 repo = "machakann/vim-highlightedyank"
 [[plugins]]
-repo = "edkolev/tmuxline.vim"
-hook_add = 'source ~/.vim/userautoload/plugins/tmuxline.rc.vim'
-[[plugins]]
 repo = "christoomey/vim-tmux-navigator"
 [[plugins]]
 repo = 'mbbill/undotree'

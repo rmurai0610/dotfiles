@@ -9,7 +9,7 @@ set showmatch
 set lbr
 set nowrap
 set cursorline
-set clipboard=unnamed
+set clipboard=unnamedplus
 set wildmenu
 set nohlsearch
 set fillchars=""
@@ -46,45 +46,6 @@ autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype c setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
 
-" Status line
-set laststatus=2
-function! GetGitBranch()
-  let l:is_git_dir = system('echo -n $(git -C ' . expand('%:p:h') . ' rev-parse --is-inside-work-tree)')
-  if l:is_git_dir is# 'true'
-    let s:git_branch = ' Git: ' . trim(system('git -C ' . expand('%:p:h'). ' rev-parse --abbrev-ref HEAD')) . ' '
-  else
-    let s:git_branch = ''
-  endif
-endfunction
-
-autocmd BufEnter * call GetGitBranch()
-
-function! StatusLineMode()
-  let l:current_mode = mode()
-  if l:current_mode ==? 'n'
-    let s:current_mode_name = 'Normal'
-    let s:current_mode_color = '#DiffText#'
-  elseif l:current_mode ==? 'i'
-    let s:current_mode_name = 'Insert'
-    let s:current_mode_color = '#DiffAdd#'
-  elseif l:current_mode ==? 'R'
-    let s:current_mode_name = 'Replace'
-    let s:current_mode_color = '#DiffDelete#'
-  endif
-  return '%' . s:current_mode_color . ' ' . s:current_mode_name . ' %*'
-endfunction
-
-function! StatusLineGit()
-  return '%#TermCursorNC#' . s:git_branch
-endfunction
-
-function! SetStatusLine()
-  return StatusLineMode() . '%#TermCursorNC# %f %*' . '%=' . StatusLineGit()
-endfunction
-
-
-set noshowmode
-set statusline=%!SetStatusLine()
 " Wrapping for text files
 function! SetTextFileWrap()
   set wrap
