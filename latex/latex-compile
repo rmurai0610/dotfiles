@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Check if docker is installed
+if ! docker -v > /dev/null; then
+  echo "docker is not installed. Please install docker."
+  exit 1
+fi
+
+# Make sure that latex image is created
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+source $DIR/init.sh
+
+# Run latexmk
+docker run --rm -it -v "$PWD":/data -w /data latex /bin/sh -c "latexmk -pdf $@"
