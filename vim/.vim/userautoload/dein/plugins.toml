@@ -33,6 +33,7 @@ repo = 'mbbill/undotree'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = 'release'
+merged = 0
 hook_add = 'source ~/.vim/userautoload/plugins/coc.rc.vim'
 [[plugins]]
 repo = 'neoclide/coc-denite'
