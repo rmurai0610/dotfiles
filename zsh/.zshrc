@@ -53,6 +53,7 @@ alias zshconfig="v ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias vimconfig="v ~/.vimrc"
 
+alias git="hub"
 alias gst="git status"
 alias add="git add"
 alias commit="git commit"
