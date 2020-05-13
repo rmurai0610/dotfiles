@@ -94,7 +94,8 @@ esac
 alias grep='grep --color=auto'
 alias ...='cd ../../'
 
-if [ -z "$TMUX" ]; then
+# Don't open tmux if in vscode
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
