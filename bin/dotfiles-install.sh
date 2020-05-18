@@ -6,9 +6,8 @@ if [ ! -d ~/.config ]; then
 fi
 
 # install zplugin
-if [ ! -d ~/.zplugin ]; then
-    mkdir ~/.zplugin
-    git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+if [ ! -d ~/.zinit ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
