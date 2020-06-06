@@ -31,12 +31,11 @@ bindkey -e
 setopt EMACS
 
 autoload -U up-line-or-beginning-search
-zle -N up-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
-
+bindkey "$key[Up]" up-line-or-beginning-search
+bindkey "$key[Down]" down-line-or-beginning-search
 
 HISTFILE=~/.zhistory
 SAVEHIST=100000
@@ -108,3 +107,4 @@ case `uname` in
     #eval `keychain -q --eval ~/.ssh/id_rsa ~/.ssh/id_rsa_github`
   ;;
 esac
+### End of Zinit's installer chunk
