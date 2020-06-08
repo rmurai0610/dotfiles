@@ -38,5 +38,6 @@ case `uname` in
   ;;
 esac
 export EDITOR=`/usr/bin/which nvim`
+
 git config --global user.name "Riku Murai"
 git config --global user.email rmurai0610@gmail.com

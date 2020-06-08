@@ -38,6 +38,6 @@ hook_add = 'source ~/.vim/userautoload/plugins/coc.rc.vim'
 [[plugins]]
 repo = 'neoclide/coc-denite'
 depends = ['coc.nvim']
-[[plugins]]
-repo = 'dense-analysis/ale'
-hook_add = 'source ~/.vim/userautoload/plugins/ale.rc.vim'
+# [[plugins]]
+# repo = 'dense-analysis/ale'
+# hook_add = 'source ~/.vim/userautoload/plugins/ale.rc.vim'

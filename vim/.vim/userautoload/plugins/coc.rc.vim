@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-highlight', 'coc-python', 'coc-cmake']
+let g:coc_global_extensions = ['coc-highlight', 'coc-python', 'coc-cmake', 'coc-clangd']
 
 set hidden
 set cmdheight=2
