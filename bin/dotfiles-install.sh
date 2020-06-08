@@ -18,7 +18,6 @@ if [ "$(uname)" == "Darwin" ]; then
     done
     # Vim settings
     ln -sn $DIR/nvim ~/.config/nvim > /dev/null 2>&1
-    ln -sn ~/.config/nvim/coc-settings-osx.json ~/.config/nvim/coc-settings.json > /dev/null 2>&1
     ln -sn $DIR/vim/.vimrc ~/.vimrc > /dev/null 2>&1
     ln -sn $DIR/vim/.vim ~/.vim     > /dev/null 2>&1
     # tmux settings
@@ -35,7 +34,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     done
     # Vim settings
     ln -sn $DIR/nvim ~/.config/nvim > /dev/null 2>&1
-    ln -sn ~/.config/nvim/coc-settings-linux.json ~/.config/nvim/coc-settings.json > /dev/null 2>&1
     ln -sn $DIR/vim/.vimrc ~/.vimrc > /dev/null 2>&1
     ln -sn $DIR/vim/.vim ~/.vim     > /dev/null 2>&1
     # tmux settings

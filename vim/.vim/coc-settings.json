@@ -1,5 +1,14 @@
 {
+
   "highlight.document.enable": false,
+  "python": {
+    "jediEnabled": false,
+    "linting": {
+      "flake8Enabled": true,
+      "pylintEnabled": false,
+      "enabled": true
+    }
+  },
   "languageserver": {
     "ccls": {
       "command": "ccls",
