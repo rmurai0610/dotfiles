@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-highlight', 'coc-python', 'coc-cmake', 'coc-clangd', 'coc-pyright']
+let g:coc_global_extensions = ['coc-highlight', 'coc-python', 'coc-cmake', 'coc-pyright']
 
 set hidden
 set cmdheight=2
@@ -51,3 +51,5 @@ endfunction
 
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+
+command! -nargs=0 Format :call CocAction('format')
