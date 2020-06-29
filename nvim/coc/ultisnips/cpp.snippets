@@ -49,6 +49,8 @@ using uset_ld = std::unordered_set<ld>;
 
 #define print(x)   std::cout << x
 #define println(x) std::cout << x << "\n"
+#define print_fixed(x)   std::cout << std::fixed << x
+#define println_fixed(x) std::cout << std::fixed << x << "\n"
 #define print_vec(v) for (auto &x:v) { std::cout << x << " ";}
 #define println_vec(v) for (auto &x:v) { std::cout << x << " ";} std::cout << "\n";
 #define print_long_vec(v) for (auto &x:v) { std::cout << x << "\n";}
@@ -83,5 +85,23 @@ void prime_sieve (T N, std::vector<T> &primes) {
             primes.emplace_back(i);
         }
     }
+}
+endsnippet
+
+
+
+snippet prime_factors "prime_factors"
+template<typename T>
+void prime_factors(T N, std::map<T, int> &factors) {
+    for (T i = 2; i * i <= N; ++i) {
+        if (N % i == 0) {
+            while (N % i == 0) {
+                factors[i]++;
+                N /= i;
+                if (N == 0) { break; }
+            }
+        }
+    }
+    if (N != 1) { factors[N]++; }
 }
 endsnippet
