@@ -28,6 +28,9 @@ case `uname` in
         fi
     fi
     unset __conda_setup
+
+    source /opt/ros/melodic/setup.zsh
+
   ;;
 esac
 export EDITOR=`/usr/bin/which nvim`
