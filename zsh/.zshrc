@@ -1,6 +1,6 @@
-source ~/.zplugin/bin/zplugin.zsh
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+source ~/.zinit/bin/zinit.zsh
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 autoload -Uz colors
 colors
@@ -12,11 +12,11 @@ zstyle ':completion:*:default' menu select=2
 autoload -Uz compinit
 compinit
 
-zplugin light zsh-users/zsh-completions
-zplugin light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zdharma/fast-syntax-highlighting
 
-zplugin ice pick"async.zsh" src"pure.zsh"
-zplugin light rmurai0610/pure
+zinit ice pick"async.zsh" src"pure.zsh"
+zinit light rmurai0610/pure
 
 
 setopt auto_param_slash
@@ -31,12 +31,11 @@ bindkey -e
 setopt EMACS
 
 autoload -U up-line-or-beginning-search
-zle -N up-line-or-beginning-search
-bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
-
+bindkey "$key[Up]" up-line-or-beginning-search
+bindkey "$key[Down]" down-line-or-beginning-search
 
 HISTFILE=~/.zhistory
 SAVEHIST=100000
@@ -53,6 +52,7 @@ alias zshconfig="v ~/.zshrc"
 alias zshreload="source ~/.zshrc"
 alias vimconfig="v ~/.vimrc"
 
+alias git="hub"
 alias gst="git status"
 alias add="git add"
 alias commit="git commit"
@@ -93,7 +93,8 @@ esac
 alias grep='grep --color=auto'
 alias ...='cd ../../'
 
-if [ -z "$TMUX" ]; then
+# Don't open tmux if in vscode
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
@@ -106,3 +107,4 @@ case `uname` in
     #eval `keychain -q --eval ~/.ssh/id_rsa ~/.ssh/id_rsa_github`
   ;;
 esac
+### End of Zinit's installer chunk

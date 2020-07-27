@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Make sure that latex image is created
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && cd ../latex && pwd )"
+source $DIR/init.sh ""
+if [ $? != 0 ]; then
+  echo "Failed to create the latex image"
+fi
+
+# Run custom command
+docker run --rm -i -v "$PWD":/data -w /data latex /bin/sh -c "$@"
