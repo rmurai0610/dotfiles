@@ -108,3 +108,4 @@ case `uname` in
   ;;
 esac
 ### End of Zinit's installer chunk
+### End of Zinit's installer chunk
