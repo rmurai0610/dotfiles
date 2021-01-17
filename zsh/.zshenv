@@ -8,6 +8,20 @@ case `uname` in
     export PATH="/Users/Riku/phd/gta/pintos/mac-i686-gcc-binaries/bin:$PATH"
     export PATH="/Users/Riku/phd/gta/pintos/src/utils:$PATH"
     export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/Riku/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/Riku/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/Riku/opt/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/Riku/opt/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
   ;;
   Linux)
     export ZSH=/home/riku/.oh-my-zsh
