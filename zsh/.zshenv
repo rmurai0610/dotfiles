@@ -7,6 +7,7 @@ case `uname` in
     export PATH="/Users/Riku/dotfiles/bin:$PATH"
     export PATH="/Users/Riku/phd/gta/pintos/mac-i686-gcc-binaries/bin:$PATH"
     export PATH="/Users/Riku/phd/gta/pintos/src/utils:$PATH"
+    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
   ;;
   Linux)
     export ZSH=/home/riku/.oh-my-zsh
@@ -18,9 +19,9 @@ case `uname` in
     export PATH="/usr/local/cuda/bin:$PATH"
     export CUDADIR="/usr/local/cuda"
 
+    __conda_setup="$('/home/riku/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     # !! Contents within this block are managed by 'conda init' !!
     CONDA_AUTO_ACTIVATE_BASE=false
-    __conda_setup="$('/home/riku/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
@@ -32,6 +33,7 @@ case `uname` in
     fi
     unset __conda_setup
     conda deactivate
+
     if [ -d "/opt/ros/melodic" ]; then
       source /opt/ros/melodic/setup.zsh
     fi
