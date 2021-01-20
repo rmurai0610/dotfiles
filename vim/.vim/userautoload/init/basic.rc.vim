@@ -26,6 +26,7 @@ if !has('gui_running')
 endif
 
 set encoding=utf-8
+let g:netrw_dirhistmax = 0
 
 " Whitespace
 set list

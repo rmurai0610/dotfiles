@@ -33,6 +33,7 @@ nmap <silent> gr          <Plug>(coc-references)
 nmap <silent> rn          <Plug>(coc-rename)
 nmap <silent> <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> <leader>ac  <Plug>(coc-codeaction)
+nmap <silent> <S-f>       <Plug>(coc-format)
 nmap <silent> <leader>c      :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
