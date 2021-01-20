@@ -10,19 +10,21 @@ unlet autoload_plug_path
 
 call plug#begin('~/.config/nvim/plugins')
 Plug 'arcticicestudio/nord-vim'
-source <sfile>:h/plugins/nord.rc.vim
 Plug 'Raimondi/delimitMate'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdcommenter'
 Plug 'machakann/vim-highlightedyank'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-source <sfile>:h/plugins/coc.rc.vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
-source <sfile>:h/plugins/fzf.rc.vim
-Plug 'tpope/vim-vinegar'
+Plug 'lambdalisue/fern.vim'
 call plug#end()
+
+source <sfile>:h/plugins/nord.rc.vim
+source <sfile>:h/plugins/coc.rc.vim
+source <sfile>:h/plugins/fzf.rc.vim
+source <sfile>:h/plugins/fern.rc.vim
 
 if plug_install
     PlugInstall --sync
