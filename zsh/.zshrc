@@ -2,6 +2,7 @@ source ~/.zinit/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+source ~/.zshenv
 autoload -Uz colors
 colors
 
@@ -141,3 +142,68 @@ case `uname` in
 esac
 ### End of Zinit's installer chunk
 
+## PATH settings
+case `uname` in
+  Darwin)
+    export ZSH=/Users/Riku/.oh-my-zsh
+    #export PATH="/usr/local/opt/llvm/bin/:$PATH"
+    export PATH="/usr/local/bin:$PATH"
+    export PATH="/Users/Riku/dotfiles/bin:$PATH"
+    export PATH="/Users/Riku/phd/gta/pintos/mac-i686-gcc-binaries/bin:$PATH"
+    export PATH="/Users/Riku/phd/gta/pintos/src/utils:$PATH"
+    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+    export LDFLAGS="-L/usr/local/opt/llvm/lib"
+    export CFLAGS="-I/usr/local/opt/llvm/include"
+    export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/Riku/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/Riku/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/Riku/opt/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/Riku/opt/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+  ;;
+  Linux)
+    export ZSH=/home/riku/.oh-my-zsh
+    export PATH="/home/riku/.local/bin:$PATH"
+    export PATH="/home/riku/dotfiles/bin:$PATH"
+    export PATH="/usr/riku/.local/bin:$PATH"
+    export PATH="/home/riku/.npm-global/bin:$PATH"
+    export PATH="/home/riku/android-studio/bin:$PATH"
+    export PATH="/usr/local/cuda/bin:$PATH"
+    export CUDADIR="/usr/local/cuda"
+
+    __conda_setup="$('/home/riku/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    # !! Contents within this block are managed by 'conda init' !!
+    CONDA_AUTO_ACTIVATE_BASE=false
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/riku/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/riku/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/riku/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    conda deactivate
+
+    if [ -d "/opt/ros/melodic" ]; then
+      source /opt/ros/melodic/setup.zsh
+    fi
+  ;;
+esac
+export EDITOR=`/usr/bin/which nvim`
+
+git config --global user.name "Riku Murai"
+git config --global user.email rmurai0610@gmail.com
