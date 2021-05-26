@@ -2,6 +2,7 @@ source ~/.zinit/bin/zinit.zsh
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+source ~/.zshenv
 autoload -Uz colors
 colors
 
@@ -30,12 +31,44 @@ setopt share_history
 bindkey -e
 setopt EMACS
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "$key[Up]" up-line-or-beginning-search
-bindkey "$key[Down]" down-line-or-beginning-search
+# Make sure that the terminal is in application mode when zle is active, since
+# only then values from $terminfo are valid
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+  function zle-line-init() {
+    echoti smkx
+  }
+  function zle-line-finish() {
+    echoti rmkx
+  }
+  zle -N zle-line-init
+  zle -N zle-line-finish
+fi
+#autoload -U up-line-or-beginning-search
+#autoload -U down-line-or-beginning-search
+#zle -N up-line-or-beginning-search
+#zle -N down-line-or-beginning-search
+#bindkey "$key[Up]" up-line-or-beginning-search
+#bindkey "$key[Down]" down-line-or-beginning-search
+if [[ "${terminfo[kpp]}" != "" ]]; then
+  bindkey "${terminfo[kpp]}" up-line-or-history       # [PageUp] - Up a line of history
+fi
+if [[ "${terminfo[knp]}" != "" ]]; then
+  bindkey "${terminfo[knp]}" down-line-or-history     # [PageDown] - Down a line of history
+fi
+
+# start typing + [Up-Arrow] - fuzzy find history forward
+if [[ "${terminfo[kcuu1]}" != "" ]]; then
+  autoload -U up-line-or-beginning-search
+  zle -N up-line-or-beginning-search
+  bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+fi
+# start typing + [Down-Arrow] - fuzzy find history backward
+if [[ "${terminfo[kcud1]}" != "" ]]; then
+  autoload -U down-line-or-beginning-search
+  zle -N down-line-or-beginning-search
+  bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+fi
+
 
 HISTFILE=~/.zhistory
 SAVEHIST=100000
@@ -108,3 +141,69 @@ case `uname` in
   ;;
 esac
 ### End of Zinit's installer chunk
+
+## PATH settings
+case `uname` in
+  Darwin)
+    export ZSH=/Users/Riku/.oh-my-zsh
+    #export PATH="/usr/local/opt/llvm/bin/:$PATH"
+    export PATH="/usr/local/bin:$PATH"
+    export PATH="/Users/Riku/dotfiles/bin:$PATH"
+    export PATH="/Users/Riku/phd/gta/pintos/mac-i686-gcc-binaries/bin:$PATH"
+    export PATH="/Users/Riku/phd/gta/pintos/src/utils:$PATH"
+    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+    export LDFLAGS="-L/usr/local/opt/llvm/lib"
+    export CFLAGS="-I/usr/local/opt/llvm/include"
+    export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/Riku/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/Riku/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/Riku/opt/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/Riku/opt/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+  ;;
+  Linux)
+    export ZSH=/home/riku/.oh-my-zsh
+    export PATH="/home/riku/.local/bin:$PATH"
+    export PATH="/home/riku/dotfiles/bin:$PATH"
+    export PATH="/usr/riku/.local/bin:$PATH"
+    export PATH="/home/riku/.npm-global/bin:$PATH"
+    export PATH="/home/riku/android-studio/bin:$PATH"
+    export PATH="/usr/local/cuda/bin:$PATH"
+    export CUDADIR="/usr/local/cuda"
+
+    __conda_setup="$('/home/riku/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    # !! Contents within this block are managed by 'conda init' !!
+    CONDA_AUTO_ACTIVATE_BASE=false
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/riku/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/riku/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/riku/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    conda deactivate
+
+    if [ -d "/opt/ros/melodic" ]; then
+      source /opt/ros/melodic/setup.zsh
+    fi
+  ;;
+esac
+export EDITOR=`/usr/bin/which nvim`
+
+git config --global user.name "Riku Murai"
+git config --global user.email rmurai0610@gmail.com

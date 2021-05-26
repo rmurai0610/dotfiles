@@ -5,4 +5,4 @@ if !has('nvim') || !has('nvim-0.3.1')
   finish
 endif
 runtime! userautoload/init/*.vim
-runtime! userautoload/dein/*.vim
+runtime! userautoload/plug/*.vim

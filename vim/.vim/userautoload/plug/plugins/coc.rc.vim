@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-highlight', 'coc-python', 'coc-cmake', 'coc-pyright', 'coc-snippets']
+let g:coc_global_extensions = ['coc-highlight', 'coc-python', 'coc-cmake', 'coc-snippets', 'coc-clangd']
 
 set hidden
 set cmdheight=2
@@ -33,6 +33,7 @@ nmap <silent> gr          <Plug>(coc-references)
 nmap <silent> rn          <Plug>(coc-rename)
 nmap <silent> <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> <leader>ac  <Plug>(coc-codeaction)
+nmap <silent> <S-f>       <Plug>(coc-format)
 nmap <silent> <leader>c      :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
@@ -70,3 +71,4 @@ au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 
 command! -nargs=0 Format :call CocAction('format')
+nnoremap <S-f> :call CocAction('format')<CR>
