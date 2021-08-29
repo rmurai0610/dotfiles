@@ -6,6 +6,10 @@
       "flake8Enabled": true,
       "pylintEnabled": false,
       "enabled": false
+    },
+    "formatting": {
+      "provider": "black",
+      "blackArgs": ["--line-length","120"]
     }
   }
 }

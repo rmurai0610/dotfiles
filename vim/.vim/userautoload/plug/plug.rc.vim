@@ -19,12 +19,16 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'lambdalisue/fern.vim'
+"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 source <sfile>:h/plugins/nord.rc.vim
 source <sfile>:h/plugins/coc.rc.vim
 source <sfile>:h/plugins/fzf.rc.vim
 source <sfile>:h/plugins/fern.rc.vim
+source <sfile>:h/plugins/latex.rc.vim
 
 if plug_install
     PlugInstall --sync
