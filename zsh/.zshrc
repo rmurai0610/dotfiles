@@ -78,7 +78,7 @@ export NVIM="nvim"
 alias v="$NVIM"
 alias vi="$NVIM"
 alias vim="$NVIM"
-alias nvim="$NVIM"
+#alias nvim="$NVIM"
 
 
 alias zshconfig="v ~/.zshrc"

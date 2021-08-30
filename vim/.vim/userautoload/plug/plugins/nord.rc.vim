@@ -1,1 +1,1 @@
-au VimEnter * nested colorscheme nord
+au VimEnter * nested colorscheme everforest

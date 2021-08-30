@@ -9,7 +9,9 @@ endif
 unlet autoload_plug_path
 
 call plug#begin('~/.config/nvim/plugins')
-Plug 'arcticicestudio/nord-vim'
+"Plug 'arcticicestudio/nord-vim'
+"Plug 'shaunsingh/nord.nvim'
+Plug 'sainnhe/everforest'
 Plug 'Raimondi/delimitMate'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdcommenter'
