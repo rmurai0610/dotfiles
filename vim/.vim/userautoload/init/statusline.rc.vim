@@ -1,6 +1,6 @@
 " Status line
-set laststatus=2
-set noshowmode
+"set laststatus=2
+"set noshowmode
 "function! GetGitBranch()
   "let l:is_git_dir = system('echo -n $(git -C ' . expand('%:p:h') . ' rev-parse --is-inside-work-tree)')
   "if l:is_git_dir is# 'true'

@@ -11,6 +11,7 @@ unlet autoload_plug_path
 call plug#begin('~/.config/nvim/plugins')
 "Plug 'arcticicestudio/nord-vim'
 "Plug 'shaunsingh/nord.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat' , 'do': ':TSUpdate'}
 Plug 'sainnhe/everforest'
 Plug 'Raimondi/delimitMate'
 Plug 'christoomey/vim-tmux-navigator'
@@ -24,7 +25,55 @@ Plug 'lambdalisue/fern.vim'
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
+Plug 'hoob3rt/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
+" Treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = {}, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
+lua <<EOF
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'everforest',
+    section_separators = '',
+    component_separators = '',
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+EOF
 
 source <sfile>:h/plugins/nord.rc.vim
 source <sfile>:h/plugins/coc.rc.vim

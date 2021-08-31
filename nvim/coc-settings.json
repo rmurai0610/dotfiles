@@ -1,4 +1,5 @@
 {
+	"coc.preferences.semanticTokensHighlights":false,
   "highlight.document.enable": false,
   "python": {
     "jediEnabled": false,
