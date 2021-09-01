@@ -1,5 +1,5 @@
-show-icons:             false
+show-icons:            false
 rofi.modi:             combi
 rofi.combi-mode:       "window,drun"
 rofi.levenshtein-sort: true
-rofi.theme:            ./nord.rasi
+rofi.theme:            ./everforest.rasi

@@ -18,16 +18,20 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdcommenter'
 Plug 'machakann/vim-highlightedyank'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'antoinemadec/coc-fzf'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
+"Plug 'antoinemadec/coc-fzf'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'lambdalisue/fern.vim'
 "Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
 call plug#end()
+
 " Treesitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -75,9 +79,18 @@ require'lualine'.setup {
 }
 EOF
 
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fc <cmd>Telescope coc commands<cr>
+lua <<EOF
+require('telescope').load_extension('coc')
+EOF
+
 source <sfile>:h/plugins/nord.rc.vim
 source <sfile>:h/plugins/coc.rc.vim
-source <sfile>:h/plugins/fzf.rc.vim
+"source <sfile>:h/plugins/fzf.rc.vim
 source <sfile>:h/plugins/fern.rc.vim
 source <sfile>:h/plugins/latex.rc.vim
 
