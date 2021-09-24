@@ -53,13 +53,13 @@ autocmd Filetype python setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype c setlocal ts=4 sw=4 sts=0 expandtab
 autocmd Filetype cpp setlocal ts=4 sw=4 sts=0 expandtab
 
-" Wrapping for text files
-function! SetTextFileWrap()
-  set wrap
-  nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
-  nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-endfunction
-au BufReadPost,BufNewFile *.md,*.txt,*.tex call SetTextFileWrap()
+"" Wrapping for text files
+"function! SetTextFileWrap()
+  "set wrap
+  "nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+  "nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+"endfunction
+"au BufReadPost,BufNewFile *.md,*.txt,*.tex call SetTextFileWrap()
 
 " Save undo info
 let s:undo_dir = expand('~/.vim/undo')
