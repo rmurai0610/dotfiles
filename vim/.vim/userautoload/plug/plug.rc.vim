@@ -30,6 +30,7 @@ Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'fannheyward/telescope-coc.nvim'
+Plug 'github/copilot.vim'
 call plug#end()
 
 " Treesitter

@@ -5,9 +5,41 @@ if [ ! -d ~/.config ]; then
     mkdir ~/.config
 fi
 
-# install zplugin
-if [ ! -d ~/.zinit ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+if [ ! -d /home/riku/.local/bin ]; then
+  mkdir /home/riku/.local/bin
+fi
+
+# Install curl if necessary
+which curl &> /dev/null || sudo apt install curl
+# Install tmux
+which tmux &> /dev/null || sudo apt install tmux
+# Install zsh
+which zsh &> /dev/null || sudo apt install zsh
+# Install Alacritty
+which alacritty &> /dev/null || sudo snap install alacritty --classic
+# Install Rofi
+which rofi &> /dev/null || sudo apt install rofi
+# Install Node
+which node &> /dev/null || {
+  curl -sL install-node.vercel.app/lts | sudo bash
+}
+
+if [ $(dpkg-query -W -f='${Status}' build-essential 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
+  sudo apt install build-essential
+fi
+# Install cmake
+which cmake &> /dev/null || sudo snap install cmake --classic
+
+which nvim &> /dev/null || {
+  curl -L -o nvim.appimage https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
+  mv nvim.appimage /home/riku/.local/bin/nvim
+  chmod u+x /home/riku/.local/bin/nvim
+}
+
+# install oh-my-zsh
+if [ ! -d ~/.oh-my-zsh ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
