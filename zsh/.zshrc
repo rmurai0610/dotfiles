@@ -105,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
+PURE_CMD_MAX_EXEC_TIME=99999999
 
 # User configuration
 
