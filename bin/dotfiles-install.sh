@@ -42,6 +42,12 @@ if [ ! -d ~/.oh-my-zsh ]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+# install pure
+if [ ! -d ~/.zsh/pure ]; then
+  mkdir -p ~/.zsh
+  git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
+fi
+
 if [ "$(uname)" == "Darwin" ]; then
     echo "Setting up for os-x machine"
     configs=(alacritty)
