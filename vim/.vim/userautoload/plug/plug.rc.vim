@@ -9,8 +9,6 @@ endif
 unlet autoload_plug_path
 
 call plug#begin('~/.config/nvim/plugins')
-"Plug 'arcticicestudio/nord-vim'
-"Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'branch': '0.5-compat' , 'do': ':TSUpdate'}
 Plug 'sainnhe/everforest'
 Plug 'Raimondi/delimitMate'
@@ -18,19 +16,15 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'scrooloose/nerdcommenter'
 Plug 'machakann/vim-highlightedyank'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-"Plug 'antoinemadec/coc-fzf'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lambdalisue/fern.vim'
-"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'fannheyward/telescope-coc.nvim'
-Plug 'github/copilot.vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Treesitter
