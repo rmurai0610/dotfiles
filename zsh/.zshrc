@@ -21,6 +21,7 @@ case `uname` in
     export PATH="/home/riku/.npm-global/bin:$PATH"
     export PATH="/home/riku/android-studio/bin:$PATH"
     export PATH="/usr/local/cuda/bin:$PATH"
+    export PATH="/snap/bin:$PATH"
     export CUDADIR="/usr/local/cuda"
 
     if [ -d "/opt/ros/melodic" ]; then
@@ -169,3 +170,7 @@ alias grep='grep --color=auto'
 if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
     tmux attach -t default || tmux new -s default
 fi
+
+# For alacritty
+unset GDK_PIXBUF_MODULEDIR
+unset GDK_PIXBUF_MODULE_FILE
