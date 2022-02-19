@@ -22,7 +22,7 @@ Plug 'lervag/vimtex'
 Plug 'junegunn/goyo.vim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', {'branch': 'nvim-0.5.0'}
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'tpope/vim-fugitive'
 call plug#end()
