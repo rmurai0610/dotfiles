@@ -68,6 +68,9 @@ if [ "$(uname)" == "Darwin" ]; then
     # zsh settings
     ln -sn $DIR/zsh/.zshrc ~/.zshrc   > /dev/null 2>&1
     ln -sn $DIR/zsh/.zshenv ~/.zshenv > /dev/null 2>&1
+    # direnv
+    ln -sn $DIR/direnv/.direnvrc ~/.direnvrc> /dev/null 2>&1
+
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     echo "Setting up for linux machine"
     configs=(rofi alacritty)
@@ -86,6 +89,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # zsh settings
     ln -sn $DIR/zsh/.zshrc ~/.zshrc   > /dev/null 2>&1
     ln -sn $DIR/zsh/.zshenv ~/.zshenv > /dev/null 2>&1
+    # direnv
+    ln -sn $DIR/direnv/.direnvrc ~/.direnvrc> /dev/null 2>&1
 fi
 
 echo "Done!"

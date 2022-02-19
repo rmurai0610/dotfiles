@@ -86,4 +86,9 @@ if has('nvim')
   let $VISUAL = 'nvr -cc split --remote-wait'
 endif
 
+if has('nvim') && !empty($CONDA_PREFIX)
+  let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
+endif
+
+
 command A :CocCommand clangd.switchSourceHeader
