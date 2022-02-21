@@ -36,6 +36,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     mv nvim.appimage /home/riku/.local/bin/nvim
     chmod u+x /home/riku/.local/bin/nvim
   }
+  which direnv &> /dev/null || sudo apt install direnv
 
 fi
 
