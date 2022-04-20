@@ -31,8 +31,8 @@ case `uname` in
     export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.2/math_libs/lib64:$LD_LIBRARY_PATH"
 
 
-    if [ -d "/opt/ros/melodic" ]; then
-      source /opt/ros/melodic/setup.zsh
+    if [ -d "/opt/ros/noetic" ]; then
+      source /opt/ros/noetic/setup.zsh
     fi
   ;;
 esac
