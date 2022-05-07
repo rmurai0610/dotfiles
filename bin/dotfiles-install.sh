@@ -9,17 +9,24 @@ if [ ! -d /home/riku/.local/bin ]; then
   mkdir /home/riku/.local/bin
 fi
 
+check_and_install() {
+  which $1 &> /dev/null || sudo apt install -y $1
+}
+
+check_and_install2() {
+  which $1 &> /dev/null || sudo apt install -y $2
+}
+
 if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  # Install curl if necessary
-  which curl &> /dev/null || sudo apt install curl
-  # Install tmux
-  which tmux &> /dev/null || sudo apt install tmux
-  # Install zsh
-  which zsh &> /dev/null || sudo apt install zsh
+  check_and_install "curl"
+  check_and_install "tmux"
+  check_and_install "zsh"
+  check_and_install "rofi"
+  check_and_install "direnv"
+  check_and_install2 "pip3" "python3-pip"
+
   # Install Alacritty
   which alacritty &> /dev/null || sudo snap install alacritty --classic
-  # Install Rofi
-  which rofi &> /dev/null || sudo apt install rofi
   # Install Node
   which node &> /dev/null || {
     curl -sL install-node.vercel.app/lts | sudo bash
@@ -36,19 +43,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     mv nvim.appimage /home/riku/.local/bin/nvim
     chmod u+x /home/riku/.local/bin/nvim
   }
-  which direnv &> /dev/null || sudo apt install direnv
 
-fi
-
-# install oh-my-zsh
-if [ ! -d ~/.oh-my-zsh ]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
-fi
-
-# install pure
-if [ ! -d ~/.zsh/pure ]; then
-  mkdir -p ~/.zsh
-  git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
 fi
 
 if [ "$(uname)" == "Darwin" ]; then
@@ -93,5 +88,17 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # direnv
     ln -sn $DIR/direnv/.direnvrc ~/.direnvrc> /dev/null 2>&1
 fi
+
+# install oh-my-zsh
+if [ ! -d ~/.oh-my-zsh ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
+fi
+
+# install pure
+if [ ! -d ~/.zsh/pure ]; then
+  mkdir -p ~/.zsh
+  git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
+fi
+
 
 echo "Done!"
