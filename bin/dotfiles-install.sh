@@ -24,6 +24,7 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   check_and_install "rofi"
   check_and_install "direnv"
   check_and_install2 "pip3" "python3-pip"
+  check_and_install "htop"
 
   # Install Alacritty
   which alacritty &> /dev/null || sudo snap install alacritty --classic
