@@ -16,16 +16,19 @@ case `uname` in
     export PATH="/usr/local/cuda/bin:$PATH"
     export PATH="/snap/bin:$PATH"
     #export CUDADIR="/usr/local/cuda"
+    # Cuda begin
     export NVARCH=`uname -s`_`uname -m`
     export NVCOMPILERS="/opt/nvidia/hpc_sdk"
-    export MANPATH="$MANPATH:$NVCOMPILERS/$NVARCH/22.2/compilers/man"
-    export PATH="$NVCOMPILERS/$NVARCH/22.2/compilers/bin:$PATH"
-    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.2/cuda/lib64:$LD_LIBRARY_PATH"
-    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.2/math_libs/lib64:$LD_LIBRARY_PATH"
+    export MANPATH="$MANPATH:$NVCOMPILERS/$NVARCH/22.3/compilers/man"
+    export PATH="$NVCOMPILERS/$NVARCH/22.3/compilers/bin:$PATH"
+    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/cuda/lib64:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/math_libs/lib64:$LD_LIBRARY_PATH"
+
+    # Cuda end
 
 
-    if [ -d "/opt/ros/melodic" ]; then
-      source /opt/ros/melodic/setup.zsh
+    if [ -d "/opt/ros/noetic" ]; then
+      source /opt/ros/noetic/setup.zsh
     fi
   ;;
 esac
@@ -179,16 +182,15 @@ unset GDK_PIXBUF_MODULE_FILE
 __conda_setup="$('/home/riku/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-    conda config --set auto_activate_base false
 else
     if [ -f "/home/riku/miniconda3/etc/profile.d/conda.sh" ]; then
         . "/home/riku/miniconda3/etc/profile.d/conda.sh"
     else
         export PATH="/home/riku/miniconda3/bin:$PATH"
     fi
+    conda config --set auto_activate_base false
 fi
 unset __conda_setup
-
 # <<< conda initialize <<<
 #
 show_virtual_env() {

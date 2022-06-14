@@ -87,7 +87,7 @@ if has('nvim')
 endif
 
 if has('nvim') && !empty($CONDA_PREFIX)
-  let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
+  let g:python3_host_prog = '/home/riku/miniconda3/bin/python'
 endif
 
 
