@@ -5,11 +5,12 @@ if [ ! -d ~/.config ]; then
     mkdir ~/.config
 fi
 
-if [ ! -d /home/riku/.local/bin ]; then
-  mkdir /home/riku/.local/bin
-fi
-
-if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+if [ "$(uname)" == "Darwin" ]; then
+  echo "OS-X"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  if [ ! -d /home/riku/.local/bin ]; then
+    mkdir /home/riku/.local/bin
+  fi
   # Install curl if necessary
   which curl &> /dev/null || sudo apt install curl
   # Install tmux
