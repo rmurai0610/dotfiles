@@ -68,7 +68,13 @@ function! s:show_documentation()
 endfunction
 
 au CursorHold * sil call CocActionAsync('highlight')
-au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+augroup mygroup
+  autocmd!
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+
 
 command! -nargs=0 Format :call CocAction('format')
 nnoremap <S-f> :call CocAction('format')<CR>
