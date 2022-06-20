@@ -1,17 +1,10 @@
 # If you come from bash you might have to change your $PATH.
+#
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 case `uname` in
   Darwin)
     export PATH="/usr/local/bin:$PATH"
     export PATH="/Users/Riku/dotfiles/bin:$PATH"
-    export PATH="/Users/Riku/phd/gta/pintos/mac-i686-gcc-binaries/bin:$PATH"
-    export PATH="/Users/Riku/phd/gta/pintos/src/utils:$PATH"
-    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-    export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-    export LDFLAGS="-L/usr/local/opt/llvm/lib"
-    export CFLAGS="-I/usr/local/opt/llvm/include"
-    export CPPFLAGS="-I/usr/local/opt/llvm/include"
   ;;
   Linux)
     export ZSH=/home/riku/.oh-my-zsh
@@ -43,8 +36,7 @@ case `uname` in
 esac
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/riku/.oh-my-zsh"
-
+export ZSH=~/.oh-my-zsh
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
