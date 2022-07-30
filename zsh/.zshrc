@@ -1,17 +1,10 @@
 # If you come from bash you might have to change your $PATH.
+#
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 case `uname` in
   Darwin)
     export PATH="/usr/local/bin:$PATH"
     export PATH="/Users/Riku/dotfiles/bin:$PATH"
-    export PATH="/Users/Riku/phd/gta/pintos/mac-i686-gcc-binaries/bin:$PATH"
-    export PATH="/Users/Riku/phd/gta/pintos/src/utils:$PATH"
-    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-    export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-    export LDFLAGS="-L/usr/local/opt/llvm/lib"
-    export CFLAGS="-I/usr/local/opt/llvm/include"
-    export CPPFLAGS="-I/usr/local/opt/llvm/include"
   ;;
   Linux)
     export ZSH=/home/riku/.oh-my-zsh
@@ -23,23 +16,26 @@ case `uname` in
     export PATH="/usr/local/cuda/bin:$PATH"
     export PATH="/snap/bin:$PATH"
     #export CUDADIR="/usr/local/cuda"
+    # Cuda begin
     export NVARCH=`uname -s`_`uname -m`
     export NVCOMPILERS="/opt/nvidia/hpc_sdk"
-    export MANPATH="$MANPATH:$NVCOMPILERS/$NVARCH/22.2/compilers/man"
-    export PATH="$NVCOMPILERS/$NVARCH/22.2/compilers/bin:$PATH"
-    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.2/cuda/lib64:$LD_LIBRARY_PATH"
-    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.2/math_libs/lib64:$LD_LIBRARY_PATH"
+    export MANPATH="$MANPATH:$NVCOMPILERS/$NVARCH/22.3/compilers/man"
+    export PATH="$NVCOMPILERS/$NVARCH/22.3/compilers/bin:$PATH"
+    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/cuda/lib64:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/math_libs/lib64:$LD_LIBRARY_PATH"
+    # Cuda end
 
 
-    if [ -d "/opt/ros/noetic" ]; then
+    if [ -d "/opt/ros/foxy" ]; then
+      source /opt/ros/foxy/setup.zsh
+    elif [ -d "/opt/ros/noetic" ]; then
       source /opt/ros/noetic/setup.zsh
     fi
   ;;
 esac
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/riku/.oh-my-zsh"
-
+export ZSH=~/.oh-my-zsh
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -123,17 +119,16 @@ PURE_CMD_MAX_EXEC_TIME=99999999
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export NVIM="nvim"
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="$NVIM"
+export EDITOR="nvim"
+if which nvim > /dev/null; then
+  export EDITOR="nvim"
 else
-  export EDITOR="$NVIM"
+  export EDITOR="vim"
 fi
 
-
-alias v="$NVIM"
-alias vi="$NVIM"
-alias vim="$NVIM"
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
 
 alias gst="git status"
 alias add="git add"
@@ -174,7 +169,7 @@ esac
 alias grep='grep --color=auto'
 
 # Don't open tmux if in vscode
-if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ ! $(tmux list-sessions) ]; then
     tmux attach -t default || tmux new -s default
 fi
 
@@ -187,16 +182,15 @@ unset GDK_PIXBUF_MODULE_FILE
 __conda_setup="$('/home/riku/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-    conda config --set auto_activate_base false
 else
     if [ -f "/home/riku/miniconda3/etc/profile.d/conda.sh" ]; then
         . "/home/riku/miniconda3/etc/profile.d/conda.sh"
     else
         export PATH="/home/riku/miniconda3/bin:$PATH"
     fi
+    conda config --set auto_activate_base false
 fi
 unset __conda_setup
-
 # <<< conda initialize <<<
 #
 show_virtual_env() {
