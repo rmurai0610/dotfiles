@@ -23,11 +23,12 @@ case `uname` in
     export PATH="$NVCOMPILERS/$NVARCH/22.3/compilers/bin:$PATH"
     export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/cuda/lib64:$LD_LIBRARY_PATH"
     export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/math_libs/lib64:$LD_LIBRARY_PATH"
-
     # Cuda end
 
 
-    if [ -d "/opt/ros/noetic" ]; then
+    if [ -d "/opt/ros/foxy" ]; then
+      source /opt/ros/foxy/setup.zsh
+    elif [ -d "/opt/ros/noetic" ]; then
       source /opt/ros/noetic/setup.zsh
     fi
   ;;
@@ -118,17 +119,16 @@ PURE_CMD_MAX_EXEC_TIME=99999999
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export NVIM="nvim"
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="$NVIM"
+export EDITOR="nvim"
+if which nvim > /dev/null; then
+  export EDITOR="nvim"
 else
-  export EDITOR="$NVIM"
+  export EDITOR="vim"
 fi
 
-
-alias v="$NVIM"
-alias vi="$NVIM"
-alias vim="$NVIM"
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
 
 alias gst="git status"
 alias add="git add"
@@ -169,7 +169,7 @@ esac
 alias grep='grep --color=auto'
 
 # Don't open tmux if in vscode
-if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ ! $(tmux list-sessions) ]; then
     tmux attach -t default || tmux new -s default
 fi
 
