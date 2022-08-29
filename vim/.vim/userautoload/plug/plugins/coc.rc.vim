@@ -72,3 +72,5 @@ au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 
 command! -nargs=0 Format :call CocAction('format')
 nnoremap <S-f> :call CocAction('format')<CR>
+
+command A :CocCommand clangd.switchSourceHeader
