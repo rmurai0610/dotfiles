@@ -169,7 +169,7 @@ esac
 alias grep='grep --color=auto'
 
 # Don't open tmux if in vscode
-if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ ! $(tmux list-sessions) ]; then
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
     tmux attach -t default || tmux new -s default
 fi
 
