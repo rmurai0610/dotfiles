@@ -5,6 +5,8 @@ case `uname` in
   Darwin)
     export PATH="/usr/local/bin:$PATH"
     export PATH="/Users/Riku/dotfiles/bin:$PATH"
+    export LIBRARY_PATH="/opt/homebrew/opt/tbb/lib/:$PATH"
+
   ;;
   Linux)
     export ZSH=/home/riku/.oh-my-zsh
@@ -24,7 +26,6 @@ case `uname` in
     export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/cuda/lib64:$LD_LIBRARY_PATH"
     export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/math_libs/lib64:$LD_LIBRARY_PATH"
     # Cuda end
-
 
     if [ -d "/opt/ros/foxy" ]; then
       source /opt/ros/foxy/setup.zsh
@@ -169,9 +170,9 @@ esac
 alias grep='grep --color=auto'
 
 # Don't open tmux if in vscode
-if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
-    tmux attach -t default || tmux new -s default
-fi
+#if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
+    #tmux attach -t default || tmux new -s default
+#fi
 
 # For alacritty
 unset GDK_PIXBUF_MODULEDIR
