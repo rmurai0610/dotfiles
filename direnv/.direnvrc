@@ -17,3 +17,8 @@ layout_anaconda() {
   fi;
 }
 
+use_conda() {
+  local ANACONDA_HOME="${HOME}/miniconda3" # Make sure this points to path of your conda install
+  . $ANACONDA_HOME/etc/profile.d/conda.sh
+  conda activate "$1"
+}

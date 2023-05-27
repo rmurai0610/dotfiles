@@ -1,5 +1,5 @@
 {
-	"coc.preferences.semanticTokensHighlights":false,
+  "coc.preferences.semanticTokensHighlights": false,
   "highlight.document.enable": false,
   "python": {
     "jediEnabled": false,
@@ -10,12 +10,18 @@
     },
     "formatting": {
       "provider": "black",
-      "blackArgs": ["--line-length","120"]
+      "blackArgs": [
+        "--line-length",
+        "120"
+      ]
     }
   },
   "clangd.trace.server": "verbose",
   "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd",
   "clangd.inlayHints": {
+    "enable": false
+  },
+  "json.format": {
     "enable": false
   }
 }

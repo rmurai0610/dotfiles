@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-highlight', 'coc-pyright', 'coc-cmake', 'coc-snippets', 'coc-clangd']
+let g:coc_global_extensions = ['coc-highlight', 'coc-pyright', 'coc-cmake', 'coc-snippets', 'coc-clangd', 'coc-json']
 
 set hidden
 set cmdheight=2
@@ -78,3 +78,5 @@ augroup end
 
 command! -nargs=0 Format :call CocAction('format')
 nnoremap <S-f> :call CocAction('format')<CR>
+
+command A :CocCommand clangd.switchSourceHeader

@@ -44,6 +44,7 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" lualine
 lua <<EOF
 require'lualine'.setup {
   options = {
@@ -74,6 +75,7 @@ require'lualine'.setup {
 }
 EOF
 
+" Telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -83,11 +85,10 @@ lua <<EOF
 require('telescope').load_extension('coc')
 EOF
 
-source <sfile>:h/plugins/nord.rc.vim
+source <sfile>:h/plugins/everforest.rc.vim
 source <sfile>:h/plugins/coc.rc.vim
-"source <sfile>:h/plugins/fzf.rc.vim
 source <sfile>:h/plugins/fern.rc.vim
-source <sfile>:h/plugins/latex.rc.vim
+source <sfile>:h/plugins/vimtex.rc.vim
 
 if plug_install
     PlugInstall --sync

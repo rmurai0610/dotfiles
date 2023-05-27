@@ -5,6 +5,8 @@ case `uname` in
   Darwin)
     export PATH="/usr/local/bin:$PATH"
     export PATH="/Users/Riku/dotfiles/bin:$PATH"
+    export LIBRARY_PATH="/opt/homebrew/opt/tbb/lib/:$PATH"
+
   ;;
   Linux)
     TERM=xterm-256color
@@ -166,31 +168,50 @@ esac
 
 alias grep='grep --color=auto'
 
-# Don't open tmux if in vscode
-if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
-  #tmux attach -t default || tmux new -s default
-fi
-
 # For alacritty
 unset GDK_PIXBUF_MODULEDIR
 unset GDK_PIXBUF_MODULE_FILE
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/riku/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/riku/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/riku/miniconda3/etc/profile.d/conda.sh"
+case `uname` in
+  Darwin)
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/riku/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/home/riku/miniconda3/bin:$PATH"
+        if [ -f "/Users/riku/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/Users/riku/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/riku/miniconda3/bin:$PATH"
+        fi
+        conda config --set auto_activate_base false
     fi
-    conda config --set auto_activate_base false
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-#
+    unset __conda_setup
+    # <<< conda initialize <<<
+    export OPENSSL_ROOT_DIR=/opt/homebrew/opt/openssl@3
+  ;;
+  Linux)
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/home/riku/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/home/riku/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/riku/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/riku/miniconda3/bin:$PATH"
+        fi
+        conda config --set auto_activate_base false
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+  ;;
+esac
+
+
+
 show_virtual_env() {
   if [[ $(pyenv local 2>/dev/null) == *"conda"* ]]; then
      VENV=$CONDA_DEFAULT_ENV
@@ -202,5 +223,6 @@ show_virtual_env() {
   fi
 }
 PS1='$(show_virtual_env)'$PS1
+
 
 eval "$(direnv hook zsh)"

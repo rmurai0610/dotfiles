@@ -5,4 +5,7 @@ if !has('nvim') || !has('nvim-0.3.1')
   finish
 endif
 runtime! userautoload/init/*.vim
-runtime! userautoload/plug/*.vim
+if exists('g:vscode')
+else
+  runtime! userautoload/plug/*.vim
+endif
