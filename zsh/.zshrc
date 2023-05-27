@@ -7,31 +7,28 @@ case `uname` in
     export PATH="/Users/Riku/dotfiles/bin:$PATH"
   ;;
   Linux)
+    TERM=xterm-256color
     export ZSH=/home/riku/.oh-my-zsh
     export PATH="/home/riku/.local/bin:$PATH"
     export PATH="/home/riku/dotfiles/bin:$PATH"
     export PATH="/usr/riku/.local/bin:$PATH"
     export PATH="/home/riku/.npm-global/bin:$PATH"
     export PATH="/home/riku/android-studio/bin:$PATH"
-    export PATH="/usr/local/cuda/bin:$PATH"
+    #export PATH="/usr/local/cuda/bin:$PATH"
     export PATH="/snap/bin:$PATH"
     #export CUDADIR="/usr/local/cuda"
-    # Cuda begin
-    export NVARCH=`uname -s`_`uname -m`
-    export NVCOMPILERS="/opt/nvidia/hpc_sdk"
-    export MANPATH="$MANPATH:$NVCOMPILERS/$NVARCH/22.3/compilers/man"
-    export PATH="$NVCOMPILERS/$NVARCH/22.3/compilers/bin:$PATH"
-    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/cuda/lib64:$LD_LIBRARY_PATH"
-    export LD_LIBRARY_PATH="$NVCOMPILERS/$NVARCH/22.3/math_libs/lib64:$LD_LIBRARY_PATH"
-    # Cuda end
+    export PATH=/usr/local/cuda-11/bin${PATH:+:${PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda-11/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 
     if [ -d "/opt/ros/noetic" ]; then
       source /opt/ros/noetic/setup.zsh
     fi
-    if [ -d "/opt/ros/foxy" ]; then
-      source /opt/ros/foxy/setup.zsh
-    fi
+    #if [ -d "/opt/ros/foxy" ]; then
+      #source /opt/ros/foxy/setup.zsh
+      #source /home/riku/dev_ws/install/setup.zsh
+      #export ROS_DOMAIN_ID=30
+    #fi
   ;;
 esac
 
@@ -170,8 +167,8 @@ esac
 alias grep='grep --color=auto'
 
 # Don't open tmux if in vscode
-if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ ! $(tmux list-sessions) ]; then
-    tmux attach -t default || tmux new -s default
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
+  #tmux attach -t default || tmux new -s default
 fi
 
 # For alacritty
