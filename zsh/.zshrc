@@ -19,8 +19,8 @@ case `uname` in
     #export PATH="/usr/local/cuda/bin:$PATH"
     export PATH="/snap/bin:$PATH"
     #export CUDADIR="/usr/local/cuda"
-    export PATH=/usr/local/cuda-11/bin${PATH:+:${PATH}}
-    export LD_LIBRARY_PATH=/usr/local/cuda-11/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 
     if [ -d "/opt/ros/noetic" ]; then
