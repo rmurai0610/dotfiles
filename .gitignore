@@ -27,3 +27,4 @@ Temporary Items
 
 # Ignore tmux plugin file
 tmux/.tmux/plugins
+.vim/undodir
