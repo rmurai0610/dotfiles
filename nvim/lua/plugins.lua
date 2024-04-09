@@ -22,15 +22,35 @@ return {
 		lazy = false,
 		config = function()
 			require("Comment").setup({
-				toggler = {
-					line = "<leader>cc",
-					block = "<leader>bc",
-				},
-				opleader = {
-					line = "<leader>cc",
-					block = "<leader>bc",
+				mappings = {
+					basic = false,
+					extra = false,
 				},
 			})
+
+			local api = require("Comment.api")
+			local config = require("Comment.config"):get()
+			local keymap = vim.keymap
+
+			local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+			keymap.set("n", "<leader>cc", function()
+				api.comment.linewise.current()
+			end, { desc = "Comment out a line" })
+			keymap.set("n", "<leader>cu", function()
+				api.uncomment.linewise.current()
+			end, { desc = "Uncomment out a line" })
+			keymap.set("v", "<leader>cc", function()
+				vim.api.nvim_feedkeys(esc, "nx", false)
+				api.comment.linewise(vim.fn.visualmode())
+			end, { desc = "Comment out a visual block of line" })
+			keymap.set("v", "<leader>cu", function()
+				vim.api.nvim_feedkeys(esc, "nx", false)
+				api.uncomment.linewise(vim.fn.visualmode())
+			end, { desc = "Uncomment out a visual block of line" })
+			keymap.set("v", "<leader>cb", function()
+				vim.api.nvim_feedkeys(esc, "nx", false)
+				api.toggle.blockwise(vim.fn.visualmode())
+			end, { desc = "Toggle a visual block of comment" })
 		end,
 	},
 	{
@@ -206,11 +226,14 @@ return {
 			{ "hrsh7th/cmp-cmdline" },
 			{ "hrsh7th/cmp-vsnip" },
 			{ "hrsh7th/vim-vsnip" },
+			{ "zbirenbaum/copilot-cmp" },
 		},
 		config = function()
 			local cmp = require("cmp")
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+			local copilot_cmp = require("copilot_cmp")
+			copilot_cmp.setup()
 
 			local has_words_before = function()
 				unpack = unpack or table.unpack
@@ -232,6 +255,8 @@ return {
 				mapping = cmp.mapping.preset.insert({
 					["<C-p>"] = cmp.mapping.select_prev_item(),
 					["<C-n>"] = cmp.mapping.select_next_item(),
+					["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+					["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 					["<C-l>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
@@ -256,9 +281,12 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "vsnip" },
-				}, { { name = "buffer" }, { name = "path" } }),
+					{ name = "nvim_lsp", group_index = 1 },
+					{ name = "copilot", group_index = 2 },
+					{ name = "vsnip", group_index = 2 },
+					{ name = "buffer", group_index = 3 },
+					{ name = "path", group_index = 3 },
+				}),
 			})
 			cmp.setup.cmdline(":", {
 				mapping = cmp.mapping.preset.cmdline(),
@@ -385,6 +413,17 @@ return {
 				'<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
 				{ desc = "Search current word" }
 			)
+		end,
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
 		end,
 	},
 }
