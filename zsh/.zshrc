@@ -19,18 +19,22 @@ case `uname` in
     #export PATH="/usr/local/cuda/bin:$PATH"
     export PATH="/snap/bin:$PATH"
     #export CUDADIR="/usr/local/cuda"
-    export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-    export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    export PATH="/usr/local/cuda-12.4/bin:$PATH"
+    export VCPKG_ROOT="/home/riku/ws/vcpkg"
+    export PATH=$VCPKG_ROOT:$PATH
+
+    export LD_LIBRARY_PATH="/usr/local/lib:/usr/local/cuda-12.4/lib64:${LD_LIBRARY_PATH}"
+    # export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 
-    if [ -d "/opt/ros/noetic" ]; then
-      source /opt/ros/noetic/setup.zsh
-    fi
-    #if [ -d "/opt/ros/foxy" ]; then
-      #source /opt/ros/foxy/setup.zsh
-      #source /home/riku/dev_ws/install/setup.zsh
-      #export ROS_DOMAIN_ID=30
-    #fi
+    # if [ -d "/opt/ros/noetic" ]; then
+    #   source /opt/ros/noetic/setup.zsh
+    # fi
+    # if [ -d "/opt/ros/foxy" ]; then
+    #   source /opt/ros/foxy/setup.zsh
+    #   source /home/riku/dev_ws/install/setup.zsh
+    #   export ROS_DOMAIN_ID=30
+    # fi
   ;;
 esac
 
