@@ -9,12 +9,22 @@ return {
         "hrsh7th/cmp-nvim-lsp-signature-help",
         "saadparwaiz1/cmp_luasnip",
         "L3MON4D3/LuaSnip",
+        "zbirenbaum/copilot-cmp",
     },
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
         local cmp = require("cmp")
-        local types = require('cmp.types')
         local luasnip = require("luasnip")
+        -- local copilot = require("copilot")
+        -- copilot.setup({
+        --     suggestion = { enabled = false },
+        --     panel = { enabled = false },
+        -- })
+
+
+        -- local copilot_cmp = require("copilot_cmp")
+        -- copilot_cmp.setup {}
+
         vim.opt.completeopt = { "menu", "menuone", "noselect" }
         cmp.setup({
             snippet = {
@@ -67,6 +77,7 @@ return {
 
             }),
             sources = cmp.config.sources({
+                -- { name = "copilot", group_index = 2 },
                 { name = "nvim_lsp" },
                 { name = "nvim_lua" },
                 { name = "luasnip" },
