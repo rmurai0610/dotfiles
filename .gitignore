@@ -28,3 +28,6 @@ Temporary Items
 # Ignore tmux plugin file
 tmux/.tmux/plugins
 .vim/undodir
+
+# nvim
+nvim/lazy-lock.json
